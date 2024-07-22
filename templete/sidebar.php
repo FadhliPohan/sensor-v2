@@ -52,7 +52,7 @@
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="perhitungan_segitiga.php" aria-expanded="false">
                             <span>
-                                <i class="ti ti-ruler-measure-2"></i>
+                                <i class="ti ti-triangles"></i>
                             </span>
                             <span class="hide-menu">Rule Based Triangle</span>
                         </a>
