@@ -324,6 +324,9 @@
 <script src="assets_modern/js/sidebarmenu.js"></script>
 <script src="assets_modern/js/theme.js"></script>
 
+<script src="assets_modern/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="assets_modern/js/datatable/datatable-basic.init.js"></script>
+
 </body>
 
 </html>
