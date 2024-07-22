@@ -13,7 +13,7 @@ include "templete/sidebar.php";
 				</div>
 				<div class="card-body p-4">
 					<div class="table-responsive rounded-2 mb-4">
-						<table class="table border text-nowrap customize-table mb-0 align-middle">
+						<table class="table border text-nowrap customize-table mb-0 align-middle" id="example">
 							<thead class="text-dark fs-4">
 								<tr>
 									<th>
@@ -63,39 +63,7 @@ include "templete/sidebar.php";
 
 				</div>
 			</div>
-			<div class="card">
-				<div class="content table-responsive table-full-width">
-					<h3 style="text-align:center"> Monitoring Data </h3>
-					<table class="table table-bordered" id="example">
-						<tr>
-							<th>Time</th>
-							<th>Temperature</th>
-							<th>Soilmoisture</th>
-							<th>Humidity</th>
-							<th>Intensity</th>
-							<th>Action</th>
-						</tr>
-						<?php
-						$sql = mysql_query("select * from node_1");
-						while ($row = mysql_fetch_array($sql)) {
-							echo "
-												<tr>
-													<td>" . $row['time'] . "</td>
-													<td>" . $row['temperature'] . "</td>
-													<td>" . $row['soilmoisture'] . "</td>
-													<td>" . $row['humidity'] . "</td>
-													<td>" . $row['intensity'] . "</td>
-													<td>
-														<a class='btn btn-danger btn-sm' href='hapus_monitoring.php?id=" . $row['id'] . "'>Hapus</a>
-													</td>
-												
-												</tr>
-											";
-						}
-						?>
-					</table>
-				</div>
-			</div>
+		
 		</div>
 	</div>
 </div>
