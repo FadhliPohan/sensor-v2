@@ -1,8 +1,8 @@
 <?php 
 $server = "localhost";
-$username = "root";
-$password = "";
-$database = "app";
+$username = "crez1389_fadli";
+$password = "lokasi123!";
+$database = "crez1389_sensor";
 $konek = mysql_connect($server, $username, $password) or die("Gagal konek ke server MySQL" .mysql_error());
 $bukadb = mysql_select_db($database) or die("Gagal membuka database $database" .mysql_error());
 ?>
