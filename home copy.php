@@ -1,34 +1,30 @@
 <?php
-include "head.php";
-include "templete/head.php";
-include "templete/sidebar.php";
+include 'sidebar.php';
+
+include "inc/koneksi.php";
+
 ?>
-<div class="container-fluid">
-	<div class="card w-100 position-relative overflow-hidden">
-		<div class="px-4 py-3 border-bottom">
-			<h5 class="card-title fw-semibold mb-0 lh-sm">Monitoring Data</h5>
-		</div>
-		<div class="card-body p-4">
-			<div class="table-responsive rounded-2 mb-4">
-				<table class="table border text-nowrap customize-table mb-0 align-middle" id="example">
-					<thead class="text-dark fs-4">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+
+</style>
+<div class="main-panel" style="background-image:url(gedung.jpg)">
+
+
+	<div class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10">
+					<table bordercolor="#0C1015" bgcolor="#9900FF" class="table table-bordered" style="background-color:white">
 						<tr>
-							<td>
-								<h6 class="fs-4 fw-semibold mb-0">TEMPERATURE (CELCIUS)</h6>
-							</td>
-							<td>
-								<h6 class="fs-4 fw-semibold mb-0">SOIL MOISTURE (%)</h6>
-							</td>
-							<td>
-								<h6 class="fs-4 fw-semibold mb-0">HUMIDITY (%)</h6>
-							</td>
-							<td>
-								<h6 class="fs-4 fw-semibold mb-0">INTENSITAS (LUX)</h6>
-							</td>
+							<td bgcolor="#9966CC">TEMPERATURE (CELCIUS)</td>
+							<td bgcolor="#9966CC">SOIL MOISTURE (%)</td>
+							<td bgcolor="#9966CC">HUMIDITY (%)</td>
+							<td bgcolor="#9966CC">INTENSITAS (LUX)</td>
 
 						</tr>
-					</thead>
-					<tbody>
 						<tr>
 							<?php
 							$data = mysql_query("select * from tb_hasil_menit ORDER BY id_hasil DESC LIMIT 0,1");
@@ -45,7 +41,6 @@ include "templete/sidebar.php";
 
 							?>
 						</tr>
-
 						<tr>
 							<td bgcolor="#9966CC">
 								<button id="start">start</button></td>
@@ -56,16 +51,19 @@ include "templete/sidebar.php";
 							</td>
 							<td bgcolor="#9966CC" id="lampu"></td>
 						</tr>
+					</table>
+				</div>
 
-					</tbody>
-				</table>
+
 			</div>
-
 		</div>
 	</div>
-	
+
+</div>
 </div>
 
+
+</body>
 <script>
 	document.getElementById("lampu").style.backgroundColor = "red";
 	var h1 = document.getElementsByTagName('h1')[0],
@@ -128,7 +126,24 @@ include "templete/sidebar.php";
 		hours = 0;
 	}
 </script>
+<!--   Core JS Files   -->
+<script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-<?php
-include "templete/footer.php";
-?>
+<!--  Charts Plugin -->
+<script src="assets/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="assets/js/bootstrap-notify.js"></script>
+
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
+<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+
+<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+<script src="assets/js/demo.js"></script>
+
+
+</html>
