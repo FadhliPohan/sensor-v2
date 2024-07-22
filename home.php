@@ -39,7 +39,6 @@ include "templete/sidebar.php";
 									<td>" . $row['sm'] . "</td>
 									<td>" . $row['humidity'] . "</td>
 									<td>" . $row['li'] . "</td>
-									
 									";
 							}
 
@@ -47,8 +46,8 @@ include "templete/sidebar.php";
 						</tr>
 
 						<tr>
-							<td bgcolor="#9966CC">
-								<button id="start">start</button></td>
+							<td bgcolor="#9966CC" class="text-center">
+								<button class="btn btn-primary " id="start">start</button></td>
 							<td colspan="2" bgcolor="#9966CC" style="text-align:center">
 								<h1><time>00:00:00</time></h1>
 								<h3 class="style1"> DURATION DRIP IRIGASI <?php echo $nilai; ?>
@@ -63,7 +62,7 @@ include "templete/sidebar.php";
 
 		</div>
 	</div>
-	
+
 </div>
 
 <script>
