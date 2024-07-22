@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon icon-->
-    <link rel="shortcut icon" type="image/png" href="assets_modern/images/logos/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="assets/img/logo_sensor.png" />
 
     <!-- Core Css -->
     <link rel="stylesheet" href="assets_modern/css/styles.css" />

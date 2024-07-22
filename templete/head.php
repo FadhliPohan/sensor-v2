@@ -12,7 +12,7 @@
 
     <!-- Core Css -->
     <link rel="stylesheet" href="assets_modern/css/styles.css" />
-    <link rel="stylesheet" href="assets_modern//libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="assets_modern/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" />
 
     <title>Sensor</title>
 </head>
