@@ -6,7 +6,7 @@ include "templete/sidebar.php";
 <div class="container-fluid">
 	<div class="card w-100 position-relative overflow-hidden">
 		<div class="px-4 py-3 border-bottom">
-			<h5 class="card-title fw-semibold mb-0 lh-sm">Basic Table</h5>
+			<h5 class="card-title fw-semibold mb-0 lh-sm">Data User</h5>
 		</div>
 		<div class="card-body p-4">
 			<div class="table-responsive rounded-2 mb-4">
