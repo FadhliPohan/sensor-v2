@@ -6,7 +6,7 @@
             <!-- Start Vertical Layout Sidebar -->
             <!-- ---------------------------------- -->
             <div class="brand-logo d-flex align-items-center justify-content-between">
-                <a href="../main/index.html" class="text-nowrap logo-img">
+                <a href="#" class="text-nowrap logo-img">
                     <img src="assets/img/logo_sensor.png" class="dark-logo" alt="Logo-Dark" style="height: 70px;" />
                     <img src="assets/img/logo_sensor.png" class="light-logo" alt="Logo-light" style="height: 70px;" />
                 </a>
