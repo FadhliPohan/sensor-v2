@@ -8,8 +8,8 @@ include "templete/sidebar.php";
 		<div class="col-md-12">
 			<div class="card">
 
+				<a href="data_user_tambah.php"><input type="submit" value="ADDED USER" class="btn btn-info text-right"></a>
 				<div class="content table-responsive table-full-width">
-					<a href="data_user_tambah.php"><input type="submit" value="ADDED USER" class="btn btn-info"></a>
 					<div class="datatable">
 						<table class="table table-hover">
 							<thead>
@@ -62,9 +62,10 @@ include "templete/sidebar.php";
 
 		</div>
 	</div>
-	<?php
-	include "templete/script.php";
-	?>
-	<?php
-	include "templete/footer.php";
-	?>
+</div>
+<?php
+include "templete/script.php";
+?>
+<?php
+include "templete/footer.php";
+?>
