@@ -97,4 +97,9 @@ include "templete/sidebar.php";
 	}
 </script>
 
-</html>
+<?php
+include "templete/script.php";
+?>
+<?php
+include "templete/footer.php";
+?>
