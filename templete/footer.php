@@ -315,8 +315,8 @@
 </div>
 <div class="dark-transparent sidebartoggler"></div>
 <!-- Import Js Files -->
-<script src="assets_modern/libs/jquery/dist/jquery.min.js"></script>
-<!-- <script src="vendor/jquery/jquery.min.js"></script> -->
+<!-- <script src="assets_modern/libs/jquery/dist/jquery.min.js"></script> -->
+<script src="vendor/jquery/jquery.min.js"></script>
 <script src="assets_modern/js/app.min.js"></script>
 <script src="assets_modern/js/app.init.js"></script>
 <script src="assets_modern/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
