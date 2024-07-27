@@ -1321,7 +1321,6 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="js/jquery.canvasjs.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script>
 	window.onload = function() {
