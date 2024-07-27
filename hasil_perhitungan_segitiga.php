@@ -1542,6 +1542,9 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 	</div>
 </div>
 
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="js/jquery.canvasjs.min.js"></script>
+
 <script>
 	window.onload = function() {
 
@@ -2683,7 +2686,7 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 
 	}
 </script>
-<script src="js/jquery.canvasjs.min.js"></script>
+
 
 <!-- Menu Toggle Script -->
 <script>
