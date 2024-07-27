@@ -189,12 +189,12 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 						<div class="datatable">
 							<div class="container">
 
-								<ul class="nav nav-tabs">
-									<li class="active mr-1"><a data-toggle="tab" href="#menu1">Temperature</a></li>
-									<li class="mr-1"><a data-toggle="tab" href="#menu2">Soil Moisture</a></li>
-									<li class="mr-1"><a data-toggle="tab" href="#menu3">Humidity</a></li>
-									<li class="mr-1"><a data-toggle="tab" href="#menu4">Intensity</a></li>
-									<li class="mr-1"><a data-toggle="tab" href="#menu5">Result</a></li>
+								<ul class="nav nav-pills">
+									<li class="nav-item active mr-1"><a data-toggle="tab" href="#menu1">Temperature</a></li>
+									<li class="nav-item mr-1"><a data-toggle="tab" href="#menu2">Soil Moisture</a></li>
+									<li class="nav-item mr-1"><a data-toggle="tab" href="#menu3">Humidity</a></li>
+									<li class="nav-item mr-1"><a data-toggle="tab" href="#menu4">Intensity</a></li>
+									<li class="nav-item mr-1"><a data-toggle="tab" href="#menu5">Result</a></li>
 								</ul>
 
 								<div class="tab-content">
