@@ -189,13 +189,46 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 						<div class="datatable">
 							<div class="container">
 
-								<ul class="nav nav-pills user-profile-tab" id="pills-tab" role="tablist">
+								<!-- <ul class="nav nav-pills user-profile-tab" id="pills-tab" role="tablist">
 									<li class="nav-item active mr-1"><a data-toggle="tab" href="#menu1">Temperature</a></li>
 									<li class="nav-item mr-1"><a data-toggle="tab" href="#menu2">Soil Moisture</a></li>
 									<li class="nav-item mr-1"><a data-toggle="tab" href="#menu3">Humidity</a></li>
 									<li class="nav-item mr-1"><a data-toggle="tab" href="#menu4">Intensity</a></li>
 									<li class="nav-item mr-1"><a data-toggle="tab" href="#menu5">Result</a></li>
-								</ul>
+								</ul> -->
+
+								<ul class="nav nav-pills user-profile-tab" id="pills-tab" role="tablist">
+					<li class="nav-item" role="presentation">
+						<button class="nav-link position-relative rounded-0 active d-flex align-items-center justify-content-center bg-transparent fs-3 py-4" id="pills-account-tab" data-bs-toggle="pill" data-bs-target="#pills-account" type="button" role="tab" aria-controls="pills-account" aria-selected="true">
+							<i class="ti ti-user-circle me-2 fs-6"></i>
+							<a data-toggle="tab" href="#menu1">Temperature</a>
+						</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-4" id="pills-notifications-tab" data-bs-toggle="pill" data-bs-target="#pills-notifications" type="button" role="tab" aria-controls="pills-notifications" aria-selected="false">
+							<i class="ti ti-bell me-2 fs-6"></i>
+							<a data-toggle="tab" href="#menu2">Soil Moisture</a>
+						</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-4" id="pills-bills-tab" data-bs-toggle="pill" data-bs-target="#pills-bills" type="button" role="tab" aria-controls="pills-bills" aria-selected="false">
+							<i class="ti ti-article me-2 fs-6"></i>
+							<a data-toggle="tab" href="#menu3">Humidity</a>
+						</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-4" id="pills-security-tab" data-bs-toggle="pill" data-bs-target="#pills-security" type="button" role="tab" aria-controls="pills-security" aria-selected="false">
+							<i class="ti ti-lock me-2 fs-6"></i>
+							<a data-toggle="tab" href="#menu4">Intensity</a>
+						</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-4" id="pills-security-tab" data-bs-toggle="pill" data-bs-target="#pills-security" type="button" role="tab" aria-controls="pills-security" aria-selected="false">
+							<i class="ti ti-lock me-2 fs-6"></i>
+							<a data-toggle="tab" href="#menu5">Result</a>
+						</button>
+					</li>
+				</ul>
 
 								<div class="tab-content">
 									<div id="menu1" class="tab-pane fade in active"><br /><br />
