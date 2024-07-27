@@ -180,24 +180,22 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 
 ?>
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="card">
-				<div class="container-fluid">
-					<div class="panel panel-default">
-						<div class="datatable">
-							<div class="container">
 
-								<ul class="nav nav-tabs">
-									<li class="active"><a data-toggle="tab" href="#menu1">Temperature</a></li>
-									<li><a data-toggle="tab" href="#menu2">Soil Moisture</a></li>
-									<li><a data-toggle="tab" href="#menu3">Humidity</a></li>
-									<li><a data-toggle="tab" href="#menu4">Intensity</a></li>
-									<li><a data-toggle="tab" href="#menu5">Result</a></li>
-								</ul>
+	<div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="datatable">
+				<div class="container">
 
-								<div class="tab-content">
-									<div id="menu1" class="tab-pane fade in active"><br /><br />
+					<ul class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="#menu1">Temperature</a></li>
+						<li><a data-toggle="tab" href="#menu2">Soil Moisture</a></li>
+						<li><a data-toggle="tab" href="#menu3">Humidity</a></li>
+						<li><a data-toggle="tab" href="#menu4">Intensity</a></li>
+						<li><a data-toggle="tab" href="#menu5">Result</a></li>
+					</ul>
+
+					<div class="tab-content">
+						<div id="menu1" class="tab-pane fade in active"><br /><br />
 
 
 
@@ -228,145 +226,145 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 
 
 
-										<!-- PERHITUNGAN UNTUK INSEIDE TEMPERATURE -------------------------------------------------------------------------------------------->
-										<div class="col-md-12">
+							<!-- PERHITUNGAN UNTUK INSEIDE TEMPERATURE -------------------------------------------------------------------------------------------->
+							<div class="col-md-12">
 
-											<table class="table table-bordered" style="width:300px">
-												<tr>
-													<td>TEMPERATURE</td>
-													<td><?php echo $_POST['suhu']; ?></td>
+								<table class="table table-bordered" style="width:300px">
+									<tr>
+										<td>TEMPERATURE</td>
+										<td><?php echo $_POST['suhu']; ?></td>
 
-												</tr>
+									</tr>
 
-											</table>
+								</table>
 
-											<div style="height:50px;width:800px;background-color:white;z-index: 99;margin-top:30px; position: absolute">
-												<!-- <table>
+								<div style="height:50px;width:800px;background-color:white;z-index: 99;margin-top:30px; position: absolute">
+									<!-- <table>
 							<tr> -->
-												<?php
+									<?php
 
 
-												if (!empty($vc)) {
-													echo '<span style="margin-left: 200px;">Very Cold</span>';
-												}
-												if (!empty($c)) {
-													echo '<span style="margin-left: 330px;">Cold</span>';
-												}
-												if (!empty($n)) {
-													echo '<span style="margin-left: 352px;">Normal</span>';
-												}
-												if (!empty($h)) {
-													echo '<span style="margin-left: 400px;">Hot</span>';
-												}
-												if (!empty($vh)) {
-													echo '<span style="margin-left: 250px;">Very Hot</span>';
-												}
-												?>
+									if (!empty($vc)) {
+										echo '<span style="margin-left: 200px;">Very Cold</span>';
+									}
+									if (!empty($c)) {
+										echo '<span style="margin-left: 330px;">Cold</span>';
+									}
+									if (!empty($n)) {
+										echo '<span style="margin-left: 352px;">Normal</span>';
+									}
+									if (!empty($h)) {
+										echo '<span style="margin-left: 400px;">Hot</span>';
+									}
+									if (!empty($vh)) {
+										echo '<span style="margin-left: 250px;">Very Hot</span>';
+									}
+									?>
 
-												<!-- </tr>
+									<!-- </tr>
 						</table> -->
-											</div>
-											<div style="margin-left:17px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:69px; position: absolute">
-												<span style='color:black'>Y</span>
+								</div>
+								<div style="margin-left:17px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:69px; position: absolute">
+									<span style='color:black'>Y</span>
 
-											</div>
-											<div style="margin-left:800px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:325px; position: absolute">
-												<span style='color:black'>Temperature (Celcius)</span>
+								</div>
+								<div style="margin-left:800px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:325px; position: absolute">
+									<span style='color:black'>Temperature (Celcius)</span>
 
-											</div>
-											<div style="margin-left:730px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:390px; position: absolute">
+								</div>
+								<div style="margin-left:730px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:390px; position: absolute">
 
-											</div>
-											<div style="margin-left:1px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:387px; position: absolute">
+								</div>
+								<div style="margin-left:1px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:387px; position: absolute">
 
-											</div>
-											<div id="chartContainer" style="height: 370px;width:800px;"></div>
+								</div>
+								<div id="chartContainer" style="height: 370px;width:800px;"></div>
 
-											<br /><br />
-										</div>
+								<br /><br />
+							</div>
 
-										<table class='table table-bordered'>
-										</table>
-										<br /><br /><br />
-										<table class="table table-bordered" style="width:900px">
-											<tr>
-												<td>Fuzzy Set</td>
-											</tr>
-											<?php
-											mysql_query("delete from tb_hasil");
-											mysql_query("delete from tb_hasil_2");
-											$suhu = $_POST['suhu'];
-											$nomor = 1;
-											$nomor1 = 1;
-											$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='0' and nilai='" . $_POST['suhu'] . "' GROUP BY is_sub_golongan,keterangan_nilai");
-											while ($row = mysql_fetch_array($sql)) {
-												$sql2 = mysql_query("SELECT MIN( nilai ) AS nilai_bawah, MAX( nilai ) AS nilai_atas
+							<table class='table table-bordered'>
+							</table>
+							<br /><br /><br />
+							<table class="table table-bordered" style="width:900px">
+								<tr>
+									<td>Fuzzy Set</td>
+								</tr>
+								<?php
+								mysql_query("delete from tb_hasil");
+								mysql_query("delete from tb_hasil_2");
+								$suhu = $_POST['suhu'];
+								$nomor = 1;
+								$nomor1 = 1;
+								$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='0' and nilai='" . $_POST['suhu'] . "' GROUP BY is_sub_golongan,keterangan_nilai");
+								while ($row = mysql_fetch_array($sql)) {
+									$sql2 = mysql_query("SELECT MIN( nilai ) AS nilai_bawah, MAX( nilai ) AS nilai_atas
 															FROM  `tb_rule` 
 															WHERE is_golongan =  '0'
 															AND keterangan =  '" . $row['keterangan'] . "'
 															AND is_sub_golongan='" . $row['is_sub_golongan'] . "'
 															");
 
-												while ($row2 = mysql_fetch_array($sql2)) {
-													$nilai_a = number_format($row2['nilai_bawah'], 2);
-													$nilai_c = number_format($row2['nilai_atas'], 2);
+									while ($row2 = mysql_fetch_array($sql2)) {
+										$nilai_a = number_format($row2['nilai_bawah'], 2);
+										$nilai_c = number_format($row2['nilai_atas'], 2);
 
-													$nilai_tengah_awal = $nilai_c - $nilai_a;
-													$nilai_tengah_pros = $nilai_tengah_awal / 2;
-													$nilai_tengah_akhir = number_format($row2['nilai_bawah'] + $nilai_tengah_pros, 2);
-													if ($row['is_sub_golongan'] == 1) {
-														if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+										$nilai_tengah_awal = $nilai_c - $nilai_a;
+										$nilai_tengah_pros = $nilai_tengah_awal / 2;
+										$nilai_tengah_akhir = number_format($row2['nilai_bawah'] + $nilai_tengah_pros, 2);
+										if ($row['is_sub_golongan'] == 1) {
+											if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
 
-															$Formula = "(d-x) / (d-c)";
-															$hasil = ($row2['nilai_atas'] - $suhu) / ($row2['nilai_atas'] - $nilai_tengah_akhir);
-														} else if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
-															$Formula = "(x-a) / (b-a)";
-															$hasil = @(($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']));
-														} else {
-															$Formula = "0";
-															$hasil = 0;
-														}
-													} else {
-														if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
-															$Formula = "(x-a) / (b-a)";
-															$hasil = ($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']);
-														} else if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
-															$Formula = "(c-x) / (c-b)";
-															$hasil = @(($nilai_c - $suhu) / ($nilai_c - $nilai_tengah_akhir));
-														} else {
-															$Formula = "0";
-															$hasil = 0;
-														}
-													}
-												}
-
-												$nomor1++;
-
-												$nomor++;
+												$Formula = "(d-x) / (d-c)";
+												$hasil = ($row2['nilai_atas'] - $suhu) / ($row2['nilai_atas'] - $nilai_tengah_akhir);
+											} else if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+												$Formula = "(x-a) / (b-a)";
+												$hasil = @(($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']));
+											} else {
+												$Formula = "0";
+												$hasil = 0;
 											}
-											?>
-										</table>
+										} else {
+											if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+												$Formula = "(x-a) / (b-a)";
+												$hasil = ($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']);
+											} else if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+												$Formula = "(c-x) / (c-b)";
+												$hasil = @(($nilai_c - $suhu) / ($nilai_c - $nilai_tengah_akhir));
+											} else {
+												$Formula = "0";
+												$hasil = 0;
+											}
+										}
+									}
+
+									$nomor1++;
+
+									$nomor++;
+								}
+								?>
+							</table>
 
 
 
 
 
-										<table class="table table-bordered" style="width:900px">
+							<table class="table table-bordered" style="width:900px">
 
-											<?php
-											$nomor = 1;
-											$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='0' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
-											while ($row = mysql_fetch_array($sql)) {
-												if ($row['is_sub_golongan'] == 1) {
-													$nama_golongan = "Trapezoid"; //menentukan dia masuk ke kurva mana
-													$nilai_b = "D";
-												} else {
-													$nama_golongan = "Triangle";
-													$nilai_b = "B";
-												}
+								<?php
+								$nomor = 1;
+								$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='0' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
+								while ($row = mysql_fetch_array($sql)) {
+									if ($row['is_sub_golongan'] == 1) {
+										$nama_golongan = "Trapezoid"; //menentukan dia masuk ke kurva mana
+										$nilai_b = "D";
+									} else {
+										$nama_golongan = "Triangle";
+										$nilai_b = "B";
+									}
 
 
-												echo "
+									echo "
 						<tr>
 						<td colspan='5' style='background-color:silver'>" . $row['keterangan_nilai'] . "</td>
 						
@@ -376,11 +374,11 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 						<td> $nama_golongan</td>
 						</tr>
 						";
-												if ($row['keterangan_nilai'] == "Very Cold") {
-													$status_a = "(B)";
-													$status_c = "(C)";
-													$status_d = "(D)";
-													echo "
+									if ($row['keterangan_nilai'] == "Very Cold") {
+										$status_a = "(B)";
+										$status_c = "(C)";
+										$status_d = "(D)";
+										echo "
 							<tr>
 							<td>$status_a=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "a") . "</td>
 							<td>$status_c=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "c") . "</td>
@@ -392,11 +390,11 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 							
 						</tr>
 							";
-												} else {
-													$status_a = "(A)";
-													$status_c = "(C)";
-													$status_d = "(B)";
-													echo "
+									} else {
+										$status_a = "(A)";
+										$status_c = "(C)";
+										$status_d = "(B)";
+										echo "
 							<tr>
 							<td>$status_a=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "a") . "</td>
 							<td>$status_d=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "b") . "</td>
@@ -407,22 +405,22 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 							
 						</tr>
 							";
-												}
+									}
 
-												if (nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "h") == "") { } else {
-													mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','0','" . $_POST['suhu'] . "','" . $row['keterangan_nilai'] . "','" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "h") . "','$nomor1')");
-												}
-												echo "
+									if (nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "h") == "") { } else {
+										mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','0','" . $_POST['suhu'] . "','" . $row['keterangan_nilai'] . "','" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "h") . "','$nomor1')");
+									}
+									echo "
 						";
-											}
-											?>
-										</table>
+								}
+								?>
+							</table>
 
 
 
-									</div>
+						</div>
 
-									<!-- PERHITUNGAN UNTUK INSEIDE TEMPERATURE -------------------------------------------------------------------------------------------->
+						<!-- PERHITUNGAN UNTUK INSEIDE TEMPERATURE -------------------------------------------------------------------------------------------->
 
 
 
@@ -481,156 +479,156 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 
 
 
-									<!-- PERHITUNGAN UNTUK SOIL MOISTURE -------------------------------------------------------------------------------------------->
+						<!-- PERHITUNGAN UNTUK SOIL MOISTURE -------------------------------------------------------------------------------------------->
 
 
-									<div id="menu2" class="tab-pane fade in ">
-										<br />
-										<div class="col-md-12">
-											<table class="table table-bordered" style="width:300px">
-												<tr>
-													<td>SOIL MOISTURE</td>
-													<td><?php echo $_POST['sm']; ?>
-												</tr>
-											</table>
-											<div style="height:30px;width:800px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:30px; position:absolute ">
-												<!-- <table>
+						<div id="menu2" class="tab-pane fade in ">
+							<br />
+							<div class="col-md-12">
+								<table class="table table-bordered" style="width:300px">
+									<tr>
+										<td>SOIL MOISTURE</td>
+										<td><?php echo $_POST['sm']; ?>
+									</tr>
+								</table>
+								<div style="height:30px;width:800px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:30px; position:absolute ">
+									<!-- <table>
 							<tr> -->
-												<?php
+									<?php
 
 
-												if (!empty($vc2)) {
-													echo '<span style="margin-left: 100px;">Very Dry</span>';
-												}
-												if (!empty($c2)) {
-													echo '<span style="margin-left: 230px;">Dry</span>';
-												}
-												if (!empty($n2)) {
-													echo '<span style="margin-left: 130px;">Normal</span>';
-												}
-												if (!empty($h2)) {
-													echo '<span style="margin-left: 160px;">Wet</span>';
-												}
-												if (!empty($vh2)) {
-													echo '<span style="margin-left: 240px;">Very Wet</span>';
-												}
-												?>
+									if (!empty($vc2)) {
+										echo '<span style="margin-left: 100px;">Very Dry</span>';
+									}
+									if (!empty($c2)) {
+										echo '<span style="margin-left: 230px;">Dry</span>';
+									}
+									if (!empty($n2)) {
+										echo '<span style="margin-left: 130px;">Normal</span>';
+									}
+									if (!empty($h2)) {
+										echo '<span style="margin-left: 160px;">Wet</span>';
+									}
+									if (!empty($vh2)) {
+										echo '<span style="margin-left: 240px;">Very Wet</span>';
+									}
+									?>
 
-												<!-- </tr>
+									<!-- </tr>
 						</table> -->
-											</div>
-											<div style="margin-left:17px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:69px; position: absolute">
-												<span style='color:black'>Y</span>
+								</div>
+								<div style="margin-left:17px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:69px; position: absolute">
+									<span style='color:black'>Y</span>
 
-											</div>
-											<div style="margin-left:500px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:355px; position: absolute">
-												<span style='color:black'>Soil Moisture (%)</span>
+								</div>
+								<div style="margin-left:500px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:355px; position: absolute">
+									<span style='color:black'>Soil Moisture (%)</span>
 
-											</div>
-											<div style="margin-left:730px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:390px; position: absolute">
+								</div>
+								<div style="margin-left:730px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:390px; position: absolute">
 
-											</div>
-											<div style="margin-left:1px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:387px; position: absolute">
+								</div>
+								<div style="margin-left:1px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:387px; position: absolute">
 
-											</div>
+								</div>
 
-											<div id="chartContainer2" style="height: 370px;width:800px;"></div>
+								<div id="chartContainer2" style="height: 370px;width:800px;"></div>
 
-											<br /><br />
-										</div>
+								<br /><br />
+							</div>
 
-										<table class='table table-bordered'>
+							<table class='table table-bordered'>
 
-											<?php
-											$nomor = 1;
-											$nomor2 = 3;
-											$suhu = $_POST['sm'];
-											$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='1' and nilai='" . $_POST['sm'] . "' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
-											while ($row = mysql_fetch_array($sql)) {
-												$sql2 = mysql_query("SELECT MIN( nilai ) AS nilai_bawah, MAX( nilai ) AS nilai_atas
+								<?php
+								$nomor = 1;
+								$nomor2 = 3;
+								$suhu = $_POST['sm'];
+								$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='1' and nilai='" . $_POST['sm'] . "' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
+								while ($row = mysql_fetch_array($sql)) {
+									$sql2 = mysql_query("SELECT MIN( nilai ) AS nilai_bawah, MAX( nilai ) AS nilai_atas
 											FROM  `tb_rule` 
 											WHERE is_golongan =  '1'
 											AND keterangan =  '" . $row['keterangan'] . "'
 											AND is_sub_golongan='" . $row['is_sub_golongan'] . "'
 											");
-												while ($row2 = mysql_fetch_array($sql2)) {
-													$nilai_a = number_format($row2['nilai_bawah'], 2);
-													$nilai_c = number_format($row2['nilai_atas'], 2);
+									while ($row2 = mysql_fetch_array($sql2)) {
+										$nilai_a = number_format($row2['nilai_bawah'], 2);
+										$nilai_c = number_format($row2['nilai_atas'], 2);
 
-													$nilai_tengah_awal = $nilai_c - $nilai_a;
-													$nilai_tengah_pros = $nilai_tengah_awal / 2;
-													$nilai_tengah_akhir = number_format($row2['nilai_bawah'] + $nilai_tengah_pros, 2);
-													if ($row['is_sub_golongan'] == 1) {
-														if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+										$nilai_tengah_awal = $nilai_c - $nilai_a;
+										$nilai_tengah_pros = $nilai_tengah_awal / 2;
+										$nilai_tengah_akhir = number_format($row2['nilai_bawah'] + $nilai_tengah_pros, 2);
+										if ($row['is_sub_golongan'] == 1) {
+											if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
 
-															$rumus = "(d-x) / (d-c)";
-															$hasil = ($row2['nilai_atas'] - $suhu) / ($row2['nilai_atas'] - $nilai_tengah_akhir);
-														} else if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
-															$rumus = "(x-a) / (b-a)";
-															$hasil = @(($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']));
-														} else {
-															$rumus = "0";
-															$hasil = 0;
-														}
-													} else {
-														if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
-															$rumus = "(x-a) / (b-a)";
-															$hasil = ($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']);
-														} else if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
-															$rumus = "(c-x) / (c-b)";
-															$hasil = @(($nilai_c - $suhu) / ($nilai_c - $nilai_tengah_akhir));
-														} else {
-															$rumus = "0";
-															$hasil = 0;
-														}
-													}
-												}
-												$nomor++;
-												$nomor2++;
+												$rumus = "(d-x) / (d-c)";
+												$hasil = ($row2['nilai_atas'] - $suhu) / ($row2['nilai_atas'] - $nilai_tengah_akhir);
+											} else if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+												$rumus = "(x-a) / (b-a)";
+												$hasil = @(($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']));
+											} else {
+												$rumus = "0";
+												$hasil = 0;
 											}
-											?>
-										</table>
+										} else {
+											if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+												$rumus = "(x-a) / (b-a)";
+												$hasil = ($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']);
+											} else if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+												$rumus = "(c-x) / (c-b)";
+												$hasil = @(($nilai_c - $suhu) / ($nilai_c - $nilai_tengah_akhir));
+											} else {
+												$rumus = "0";
+												$hasil = 0;
+											}
+										}
+									}
+									$nomor++;
+									$nomor2++;
+								}
+								?>
+							</table>
 
 
-										<br /><br /><br />
-										<table class="table table-bordered" style="width:900px">
-											<tr>
-												<td>Fuzzy Set</td>
-											</tr>
+							<br /><br /><br />
+							<table class="table table-bordered" style="width:900px">
+								<tr>
+									<td>Fuzzy Set</td>
+								</tr>
 
-											<?php
-											$nomor = 1;
+								<?php
+								$nomor = 1;
 
-											$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='1' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
-											while ($row = mysql_fetch_array($sql)) {
-												if ($row['is_sub_golongan'] == 1) {
-													$nama_golongan = "Trapezoid";
-													$nilai_b = "D";
-												} else {
-													$nama_golongan = "Triangle";
-													$nilai_b = "B";
-												}
-												if ($row['keterangan_nilai'] == "Very Dry") {
-													$status_a = "(B)";
-													$status_c = "(C)";
-													$status_d = "(D)";
-												} else {
-													$status_a = "(A)";
-												}
+								$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='1' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
+								while ($row = mysql_fetch_array($sql)) {
+									if ($row['is_sub_golongan'] == 1) {
+										$nama_golongan = "Trapezoid";
+										$nilai_b = "D";
+									} else {
+										$nama_golongan = "Triangle";
+										$nilai_b = "B";
+									}
+									if ($row['keterangan_nilai'] == "Very Dry") {
+										$status_a = "(B)";
+										$status_c = "(C)";
+										$status_d = "(D)";
+									} else {
+										$status_a = "(A)";
+									}
 
-												if ($row['keterangan_nilai'] == "Very Wet") {
+									if ($row['keterangan_nilai'] == "Very Wet") {
 
-													$status_d = "(B)";
-													$status_c = "(C)";
-												}
-												if ($row['keterangan_nilai'] == "Dry") {
-													$status_a = "(A)";
+										$status_d = "(B)";
+										$status_c = "(C)";
+									}
+									if ($row['keterangan_nilai'] == "Dry") {
+										$status_a = "(A)";
 
-													$status_d = "(B)";
-													$status_c = "(C)";
-												}
+										$status_d = "(B)";
+										$status_c = "(C)";
+									}
 
-												echo "
+									echo "
 						<tr>
 						<td colspan='5' style='background-color:silver'>" . $row['keterangan_nilai'] . "</td>
 						
@@ -649,157 +647,157 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 							
 						</tr>
 						";
-												if (nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['sm'], $row['keterangan_nilai'], 1, "h") == "") { } else {
-													mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','1','" . $_POST['sm'] . "','" . $row['keterangan_nilai'] . "','" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['sm'], $row['keterangan_nilai'], 1, "h") . "','$nomor2')");
-												}
-											}
-											?>
-										</table>
+									if (nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['sm'], $row['keterangan_nilai'], 1, "h") == "") { } else {
+										mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','1','" . $_POST['sm'] . "','" . $row['keterangan_nilai'] . "','" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['sm'], $row['keterangan_nilai'], 1, "h") . "','$nomor2')");
+									}
+								}
+								?>
+							</table>
 
+
+						</div>
+						<!-- PERHITUNGAN UNTUK SOIL MOISTURE -------------------------------------------------------------------------------------------->
+
+						<!-- PERHITUNGAN UNTUK HUMIDITY -------------------------------------------------------------------------------------------->
+
+
+						<div id="menu3" class="tab-pane fade in ">
+
+							<h4>
+								</h2><br />
+								<div class="col-md-12">
+									<table class="table table-bordered" style="width:300px">
+										<tr>
+											<td>HUMIDITY</td>
+											<td><?php echo $_POST['hm']; ?>
+										</tr>
+									</table>
+									<div style="height:30px;width:800px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:30px; position:absolute ">
+										<!-- <table>
+							<tr> -->
+										<?php
+
+
+										if (!empty($vc3)) {
+											echo '<span style="margin-left: 100px;">Very Low</span>';
+										}
+										if (!empty($c3)) {
+											echo '<span style="margin-left: 190px;">Low</span>';
+										}
+										if (!empty($n3)) {
+											echo '<span style="margin-left: 230px;">Normal</span>';
+										}
+										if (!empty($h3)) {
+											echo '<span style="margin-left: 250px;">High</span>';
+										}
+										if (!empty($vh3)) {
+											echo '<span style="margin-left: 160px;">Very High</span>';
+										}
+										?>
+
+										<!-- </tr>
+						</table> -->
+									</div>
+									<div style="margin-left:17px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:69px; position: absolute">
+										<span style='color:black'>Y</span>
 
 									</div>
-									<!-- PERHITUNGAN UNTUK SOIL MOISTURE -------------------------------------------------------------------------------------------->
+									<div style="margin-left:500px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:355px; position: absolute">
+										<span style='color:black'>Humidity (%)</span>
 
-									<!-- PERHITUNGAN UNTUK HUMIDITY -------------------------------------------------------------------------------------------->
+									</div>
+									<div style="margin-left:730px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:390px; position: absolute">
 
+									</div>
+									<div style="margin-left:1px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:387px; position: absolute">
 
-									<div id="menu3" class="tab-pane fade in ">
+									</div>
+									<div id="chartContainer3" style="height: 370px;width:800px;"></div>
+									<br /><br />
+								</div>
 
-										<h4>
-											</h2><br />
-											<div class="col-md-12">
-												<table class="table table-bordered" style="width:300px">
-													<tr>
-														<td>HUMIDITY</td>
-														<td><?php echo $_POST['hm']; ?>
-													</tr>
-												</table>
-												<div style="height:30px;width:800px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:30px; position:absolute ">
-													<!-- <table>
-							<tr> -->
-													<?php
+								<table class='table table-bordered'>
 
-
-													if (!empty($vc3)) {
-														echo '<span style="margin-left: 100px;">Very Low</span>';
-													}
-													if (!empty($c3)) {
-														echo '<span style="margin-left: 190px;">Low</span>';
-													}
-													if (!empty($n3)) {
-														echo '<span style="margin-left: 230px;">Normal</span>';
-													}
-													if (!empty($h3)) {
-														echo '<span style="margin-left: 250px;">High</span>';
-													}
-													if (!empty($vh3)) {
-														echo '<span style="margin-left: 160px;">Very High</span>';
-													}
-													?>
-
-													<!-- </tr>
-						</table> -->
-												</div>
-												<div style="margin-left:17px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:69px; position: absolute">
-													<span style='color:black'>Y</span>
-
-												</div>
-												<div style="margin-left:500px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:355px; position: absolute">
-													<span style='color:black'>Humidity (%)</span>
-
-												</div>
-												<div style="margin-left:730px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:390px; position: absolute">
-
-												</div>
-												<div style="margin-left:1px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:387px; position: absolute">
-
-												</div>
-												<div id="chartContainer3" style="height: 370px;width:800px;"></div>
-												<br /><br />
-											</div>
-
-											<table class='table table-bordered'>
-
-												<?php
-												$nomor = 1;
-												$nomor3 = 5;
-												$suhu = $_POST['hm'];
-												$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='2' and nilai='" . $_POST['hm'] . "' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
-												while ($row = mysql_fetch_array($sql)) {
-													$sql2 = mysql_query("SELECT MIN( nilai ) AS nilai_bawah, MAX( nilai ) AS nilai_atas
+									<?php
+									$nomor = 1;
+									$nomor3 = 5;
+									$suhu = $_POST['hm'];
+									$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='2' and nilai='" . $_POST['hm'] . "' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
+									while ($row = mysql_fetch_array($sql)) {
+										$sql2 = mysql_query("SELECT MIN( nilai ) AS nilai_bawah, MAX( nilai ) AS nilai_atas
 											FROM  `tb_rule` 
 											WHERE is_golongan =  '2'
 											AND keterangan =  '" . $row['keterangan'] . "'
 											AND is_sub_golongan='" . $row['is_sub_golongan'] . "'
 											");
-													while ($row2 = mysql_fetch_array($sql2)) {
-														$nilai_a = number_format($row2['nilai_bawah'], 2);
-														$nilai_c = number_format($row2['nilai_atas'], 2);
+										while ($row2 = mysql_fetch_array($sql2)) {
+											$nilai_a = number_format($row2['nilai_bawah'], 2);
+											$nilai_c = number_format($row2['nilai_atas'], 2);
 
-														$nilai_tengah_awal = $nilai_c - $nilai_a;
-														$nilai_tengah_pros = $nilai_tengah_awal / 2;
-														$nilai_tengah_akhir = number_format($row2['nilai_bawah'] + $nilai_tengah_pros, 2);
-														if ($row['is_sub_golongan'] == 1) {
-															if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+											$nilai_tengah_awal = $nilai_c - $nilai_a;
+											$nilai_tengah_pros = $nilai_tengah_awal / 2;
+											$nilai_tengah_akhir = number_format($row2['nilai_bawah'] + $nilai_tengah_pros, 2);
+											if ($row['is_sub_golongan'] == 1) {
+												if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
 
-																$rumus = "(d-x) / (d-c)";
-																$hasil = ($row2['nilai_atas'] - $suhu) / ($row2['nilai_atas'] - $nilai_tengah_akhir);
-															} else if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
-																$rumus = "(x-a) / (b-a)";
-																$hasil = @(($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']));
-															} else {
-																$rumus = "0";
-																$hasil = 0;
-															}
-														} else {
-															if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
-																$rumus = "(x-a) / (b-a)";
-																$hasil = ($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']);
-															} else if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
-																$rumus = "(c-x) / (c-b)";
-																$hasil = @(($nilai_c - $suhu) / ($nilai_c - $nilai_tengah_akhir));
-															} else {
-																$rumus = "0";
-																$hasil = 0;
-															}
-														}
-													}
-													$nomor3++;
-													$nomor++;
+													$rumus = "(d-x) / (d-c)";
+													$hasil = ($row2['nilai_atas'] - $suhu) / ($row2['nilai_atas'] - $nilai_tengah_akhir);
+												} else if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+													$rumus = "(x-a) / (b-a)";
+													$hasil = @(($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']));
+												} else {
+													$rumus = "0";
+													$hasil = 0;
 												}
-												?>
-											</table>
+											} else {
+												if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+													$rumus = "(x-a) / (b-a)";
+													$hasil = ($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']);
+												} else if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+													$rumus = "(c-x) / (c-b)";
+													$hasil = @(($nilai_c - $suhu) / ($nilai_c - $nilai_tengah_akhir));
+												} else {
+													$rumus = "0";
+													$hasil = 0;
+												}
+											}
+										}
+										$nomor3++;
+										$nomor++;
+									}
+									?>
+								</table>
 
-											<br /><br /><br />
-											<table class="table table-bordered" style="width:900px">
-												<tr>
-													<td>Fuzzy Set</td>
-												</tr>
+								<br /><br /><br />
+								<table class="table table-bordered" style="width:900px">
+									<tr>
+										<td>Fuzzy Set</td>
+									</tr>
 
-												<?php
-												$nomor = 1;
-												$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='2' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
-												while ($row = mysql_fetch_array($sql)) {
-													if ($row['is_sub_golongan'] == 1) {
-														$nama_golongan = "Trapezoid";
-														$nilai_b = "D";
-													} else {
-														$nama_golongan = "Triangle";
-														$nilai_b = "B";
-													}
-													if ($row['keterangan_nilai'] == "Very Low") {
-														$status_a = "(B)";
-														$status_c = "(C)";
-														$status_d = "(D)";
-													} else {
-														$status_a = "(A)";
-														$status_c = "(C)";
-														$status_d = "(B)";
-													}
+									<?php
+									$nomor = 1;
+									$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='2' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
+									while ($row = mysql_fetch_array($sql)) {
+										if ($row['is_sub_golongan'] == 1) {
+											$nama_golongan = "Trapezoid";
+											$nilai_b = "D";
+										} else {
+											$nama_golongan = "Triangle";
+											$nilai_b = "B";
+										}
+										if ($row['keterangan_nilai'] == "Very Low") {
+											$status_a = "(B)";
+											$status_c = "(C)";
+											$status_d = "(D)";
+										} else {
+											$status_a = "(A)";
+											$status_c = "(C)";
+											$status_d = "(B)";
+										}
 
 
 
-													echo "
+										echo "
 						<tr>
 						<td colspan='5' style='background-color:silver'>" . $row['keterangan_nilai'] . "</td>
 						
@@ -818,171 +816,171 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 							
 						</tr>
 						";
-													if (nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['hm'], $row['keterangan_nilai'], 2, "h") == "") { } else {
-														mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','2','" . $_POST['hm'] . "','" . $row['keterangan_nilai'] . "','" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['hm'], $row['keterangan_nilai'], 2, "h") . "','$nomor3')");
-													}
-												}
-												?>
-											</table>
+										if (nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['hm'], $row['keterangan_nilai'], 2, "h") == "") { } else {
+											mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','2','" . $_POST['hm'] . "','" . $row['keterangan_nilai'] . "','" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['hm'], $row['keterangan_nilai'], 2, "h") . "','$nomor3')");
+										}
+									}
+									?>
+								</table>
 
+						</div>
+
+						<!-- PERHITUNGAN UNTUK HUMIDITY -------------------------------------------------------------------------------------------->
+
+
+						<!-- PERHITUNGAN UNTUK LIGHT -------------------------------------------------------------------------------------------->
+
+						<div id="menu4" class="tab-pane fade in ">
+
+							<h4>
+								</h2><br />
+								<div class="col-md-12">
+									<table class="table table-bordered" style="width:300px">
+										<tr>
+											<td>INTENSITY</td>
+											<td><?php echo $_POST['li']; ?>
+										</tr>
+									</table>
+									<div style="height:30px;width:800px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:30px; position:absolute ">
+										<!-- <table>
+							<tr> -->
+										<?php
+
+
+										if (!empty($vc4)) {
+											echo '<span style="margin-left: 100px;">Dark</span>';
+										}
+										if (!empty($c4)) {
+											echo '<span style="margin-left: 210px;">Rather Dim</span>';
+										}
+										if (!empty($n4)) {
+											echo '<span style="margin-left: 200px;">Normal</span>';
+										}
+										if (!empty($h4)) {
+											echo '<span style="margin-left: 150px;">Bright</span>';
+										}
+										if (!empty($vh4)) {
+											echo '<span style="margin-left: 250px;">Very Bright</span>';
+										}
+										?>
+
+										<!-- </tr>
+						</table> -->
 									</div>
 
-									<!-- PERHITUNGAN UNTUK HUMIDITY -------------------------------------------------------------------------------------------->
+									<div style="margin-left:17px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:69px; position: absolute">
+										<span style='color:black'>Y</span>
 
+									</div>
+									<div style="margin-left:500px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:355px; position: absolute">
+										<span style='color:black'>Intensity (Lux)</span>
 
-									<!-- PERHITUNGAN UNTUK LIGHT -------------------------------------------------------------------------------------------->
+									</div>
+									<div style="margin-left:730px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:390px; position: absolute">
 
-									<div id="menu4" class="tab-pane fade in ">
+									</div>
+									<div style="margin-left:1px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:387px; position: absolute">
 
-										<h4>
-											</h2><br />
-											<div class="col-md-12">
-												<table class="table table-bordered" style="width:300px">
-													<tr>
-														<td>INTENSITY</td>
-														<td><?php echo $_POST['li']; ?>
-													</tr>
-												</table>
-												<div style="height:30px;width:800px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:30px; position:absolute ">
-													<!-- <table>
-							<tr> -->
-													<?php
+									</div>
+									<div id="chartContainer5" style="height: 370px;width:800px;"></div>
+									<br /> <br />
+								</div>
 
+								<table class='table table-bordered'>
 
-													if (!empty($vc4)) {
-														echo '<span style="margin-left: 100px;">Dark</span>';
-													}
-													if (!empty($c4)) {
-														echo '<span style="margin-left: 210px;">Rather Dim</span>';
-													}
-													if (!empty($n4)) {
-														echo '<span style="margin-left: 200px;">Normal</span>';
-													}
-													if (!empty($h4)) {
-														echo '<span style="margin-left: 150px;">Bright</span>';
-													}
-													if (!empty($vh4)) {
-														echo '<span style="margin-left: 250px;">Very Bright</span>';
-													}
-													?>
-
-													<!-- </tr>
-						</table> -->
-												</div>
-
-												<div style="margin-left:17px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:69px; position: absolute">
-													<span style='color:black'>Y</span>
-
-												</div>
-												<div style="margin-left:500px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:355px; position: absolute">
-													<span style='color:black'>Intensity (Lux)</span>
-
-												</div>
-												<div style="margin-left:730px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:390px; position: absolute">
-
-												</div>
-												<div style="margin-left:1px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:387px; position: absolute">
-
-												</div>
-												<div id="chartContainer5" style="height: 370px;width:800px;"></div>
-												<br /> <br />
-											</div>
-
-											<table class='table table-bordered'>
-
-												<?php
-												$nomor = 1;
-												$nomor4 = 7;
-												$suhu = $_POST['li'];
-												$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='3' and nilai='" . $_POST['li'] . "' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
-												while ($row = mysql_fetch_array($sql)) {
-													$sql2 = mysql_query("SELECT MIN( nilai ) AS nilai_bawah, MAX( nilai ) AS nilai_atas
+									<?php
+									$nomor = 1;
+									$nomor4 = 7;
+									$suhu = $_POST['li'];
+									$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='3' and nilai='" . $_POST['li'] . "' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
+									while ($row = mysql_fetch_array($sql)) {
+										$sql2 = mysql_query("SELECT MIN( nilai ) AS nilai_bawah, MAX( nilai ) AS nilai_atas
 											FROM  `tb_rule` 
 											WHERE is_golongan =  '3'
 											AND keterangan =  '" . $row['keterangan'] . "'
 											AND is_sub_golongan='" . $row['is_sub_golongan'] . "'
 											");
-													while ($row2 = mysql_fetch_array($sql2)) {
-														$nilai_a = $row2['nilai_bawah'];
-														$nilai_c = $row2['nilai_atas'];
+										while ($row2 = mysql_fetch_array($sql2)) {
+											$nilai_a = $row2['nilai_bawah'];
+											$nilai_c = $row2['nilai_atas'];
 
-														$nilai_tengah_awal = $nilai_c - $nilai_a;
-														$nilai_tengah_pros = $nilai_tengah_awal / 2;
-														$nilai_tengah_akhir = $row2['nilai_bawah'] + $nilai_tengah_pros;
-														if ($row['is_sub_golongan'] == 1) {
-															if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+											$nilai_tengah_awal = $nilai_c - $nilai_a;
+											$nilai_tengah_pros = $nilai_tengah_awal / 2;
+											$nilai_tengah_akhir = $row2['nilai_bawah'] + $nilai_tengah_pros;
+											if ($row['is_sub_golongan'] == 1) {
+												if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
 
-																$rumus = "(d-x) / (d-c)";
-																$hasil = ($row2['nilai_atas'] - $suhu) / ($row2['nilai_atas'] - $nilai_tengah_akhir);
-															} else if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
-																$rumus = "(x-a) / (b-a)";
-																$hasil = @(($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']));
-															} else {
-																$rumus = "0";
-																$hasil = 0;
-															}
-														} else {
-															if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
-																$rumus = "(x-a) / (b-a)";
-																$hasil = ($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']);
-															} else if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
-																$rumus = "(c-x) / (c-b)";
-																$hasil = @(($nilai_c - $suhu) / ($nilai_c - $nilai_tengah_akhir));
-															} else {
-																$rumus = "0";
-																$hasil = 0;
-															}
-														}
-													}
-													$nomor++;
-													$nomor4++;
+													$rumus = "(d-x) / (d-c)";
+													$hasil = ($row2['nilai_atas'] - $suhu) / ($row2['nilai_atas'] - $nilai_tengah_akhir);
+												} else if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+													$rumus = "(x-a) / (b-a)";
+													$hasil = @(($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']));
+												} else {
+													$rumus = "0";
+													$hasil = 0;
 												}
-												?>
-											</table>
+											} else {
+												if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+													$rumus = "(x-a) / (b-a)";
+													$hasil = ($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']);
+												} else if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+													$rumus = "(c-x) / (c-b)";
+													$hasil = @(($nilai_c - $suhu) / ($nilai_c - $nilai_tengah_akhir));
+												} else {
+													$rumus = "0";
+													$hasil = 0;
+												}
+											}
+										}
+										$nomor++;
+										$nomor4++;
+									}
+									?>
+								</table>
 
 
 
 
-											<br /><br /><br />
-											<table class="table table-bordered" style="width:900px">
-												<tr>
-													<td>Fuzzy Set</td>
-												</tr>
+								<br /><br /><br />
+								<table class="table table-bordered" style="width:900px">
+									<tr>
+										<td>Fuzzy Set</td>
+									</tr>
 
-												<?php
-												$nomor = 1;
-												$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='3' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
-												while ($row = mysql_fetch_array($sql)) {
-													if ($row['is_sub_golongan'] == 1) {
-														$nama_golongan = "Trapezoid";
-														$nilai_b = "D";
-													} else {
-														$nama_golongan = "Triangle";
-														$nilai_b = "B";
-													}
-													if ($row['keterangan_nilai'] == "gelap") {
-														$ket = "Dark";
-													} else if ($row['keterangan_nilai'] == "redup") {
-														$ket = "Rather Dim";
-													} else if ($row['keterangan_nilai'] == "agak_terang") {
-														$ket = "Bright";
-													} else if ($row['keterangan_nilai'] == "terang") {
-														$ket = "Very Bright";
-													} else {
-														$ket = $row['keterangan_nilai'];
-													}
-													if ($ket == "Dark") {
-														$status_a = "(B)";
-														$status_c = "(C)";
-														$status_d = "(D)";
-													} else {
-														$status_a = "(A)";
-														$status_c = "(C)";
-														$status_d = "(B)";
-													}
+									<?php
+									$nomor = 1;
+									$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='3' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
+									while ($row = mysql_fetch_array($sql)) {
+										if ($row['is_sub_golongan'] == 1) {
+											$nama_golongan = "Trapezoid";
+											$nilai_b = "D";
+										} else {
+											$nama_golongan = "Triangle";
+											$nilai_b = "B";
+										}
+										if ($row['keterangan_nilai'] == "gelap") {
+											$ket = "Dark";
+										} else if ($row['keterangan_nilai'] == "redup") {
+											$ket = "Rather Dim";
+										} else if ($row['keterangan_nilai'] == "agak_terang") {
+											$ket = "Bright";
+										} else if ($row['keterangan_nilai'] == "terang") {
+											$ket = "Very Bright";
+										} else {
+											$ket = $row['keterangan_nilai'];
+										}
+										if ($ket == "Dark") {
+											$status_a = "(B)";
+											$status_c = "(C)";
+											$status_d = "(D)";
+										} else {
+											$status_a = "(A)";
+											$status_c = "(C)";
+											$status_d = "(B)";
+										}
 
 
-													echo "
+										echo "
 						<tr>
 						<td colspan='5' style='background-color:silver'>" . $ket . "</td>
 						
@@ -1001,65 +999,65 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 							
 						</tr>
 						";
-													if (nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['li'], $row['keterangan_nilai'], 3, "h") == "") { } else {
-														//mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','2','".$_POST['hm']."','".$row['keterangan_nilai']."','".nilai_parameter_a($row['is_sub_golongan'],$row['keterangan'],$_POST['hm'],$row['keterangan_nilai'],2,"h")."','$nomor3')");
+										if (nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['li'], $row['keterangan_nilai'], 3, "h") == "") { } else {
+											//mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','2','".$_POST['hm']."','".$row['keterangan_nilai']."','".nilai_parameter_a($row['is_sub_golongan'],$row['keterangan'],$_POST['hm'],$row['keterangan_nilai'],2,"h")."','$nomor3')");
 
-														mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','3','" . $_POST['li'] . "','" . $row['keterangan_nilai'] . "','" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['li'], $row['keterangan_nilai'], 3, "h") . "','$nomor4')");
-													}
-												}
-												?>
-											</table>
+											mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','3','" . $_POST['li'] . "','" . $row['keterangan_nilai'] . "','" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['li'], $row['keterangan_nilai'], 3, "h") . "','$nomor4')");
+										}
+									}
+									?>
+								</table>
 
-									</div>
+						</div>
 
-									<!-- PERHITUNGAN UNTUK LIGHT -------------------------------------------------------------------------------------------->
-
-
-									<div id="menu5" class="tab-pane fade in ">
+						<!-- PERHITUNGAN UNTUK LIGHT -------------------------------------------------------------------------------------------->
 
 
-										<!-- PERHITUNGAN UNTUK FUZYFICATION -------------------------------------------------------------------------------------------->
+						<div id="menu5" class="tab-pane fade in ">
 
-										<hr />
-										<h4>FUZZIFICATION</h1>
-											<table class='table table-bordered' style="width:930px">
-												<?php
-												$ra = 0;
-												function get_rule_kondisi($kondisi_1, $kondisi_2, $kondisi_3)
-												{
-													$sql = mysql_query("SELECT * from tb_rule_kondisi where kondisi_1 LIKE '%$kondisi_1%' and kondisi_2 LIKE '" . $kondisi_2 . "'  and kondisi_3 LIKE '" . $kondisi_3 . "' ");
-													while ($row = mysql_fetch_array($sql)) {
-														$kondisi = $row['hasil'];
-													}
-													return $kondisi;
-												}
-												$sql = mysql_query("SELECT * from tb_hasil where golongan='0' ORDER BY id_hasil ASC");
-												while ($row = mysql_fetch_array($sql)) {
 
-													echo "
+							<!-- PERHITUNGAN UNTUK FUZYFICATION -------------------------------------------------------------------------------------------->
+
+							<hr />
+							<h4>FUZZIFICATION</h1>
+								<table class='table table-bordered' style="width:930px">
+									<?php
+									$ra = 0;
+									function get_rule_kondisi($kondisi_1, $kondisi_2, $kondisi_3)
+									{
+										$sql = mysql_query("SELECT * from tb_rule_kondisi where kondisi_1 LIKE '%$kondisi_1%' and kondisi_2 LIKE '" . $kondisi_2 . "'  and kondisi_3 LIKE '" . $kondisi_3 . "' ");
+										while ($row = mysql_fetch_array($sql)) {
+											$kondisi = $row['hasil'];
+										}
+										return $kondisi;
+									}
+									$sql = mysql_query("SELECT * from tb_hasil where golongan='0' ORDER BY id_hasil ASC");
+									while ($row = mysql_fetch_array($sql)) {
+
+										echo "
 										
 									";
-													$sql2 = mysql_query("SELECT * from tb_hasil where golongan='1' ORDER BY id_hasil ASC");
-													$nomor1 = 1;
-													while ($row_6 = mysql_fetch_array($sql2)) {
-														$nomor2 = 2;
-														$sql3 = mysql_query("SELECT * from tb_hasil where golongan='2' ORDER BY id_hasil ASC");
-														while ($row_7 = mysql_fetch_array($sql3)) {
-															$sql4 = mysql_query("SELECT * from tb_hasil where golongan='3' ORDER BY id_hasil ASC");
-															while ($row_8 = mysql_fetch_array($sql4)) {
-																if ($row_8['keterangan'] == "gelap") {
-																	$ket = "Dark";
-																} else if ($row_8['keterangan'] == "redup") {
-																	$ket = "Rather Dim";
-																} else if ($row_8['keterangan'] == "agak_terang") {
-																	$ket = "Bright";
-																} else if ($row_8['keterangan'] == "terang") {
-																	$ket = "Very Bright";
-																} else {
-																	$ket = $row_8['keterangan'];
-																}
+										$sql2 = mysql_query("SELECT * from tb_hasil where golongan='1' ORDER BY id_hasil ASC");
+										$nomor1 = 1;
+										while ($row_6 = mysql_fetch_array($sql2)) {
+											$nomor2 = 2;
+											$sql3 = mysql_query("SELECT * from tb_hasil where golongan='2' ORDER BY id_hasil ASC");
+											while ($row_7 = mysql_fetch_array($sql3)) {
+												$sql4 = mysql_query("SELECT * from tb_hasil where golongan='3' ORDER BY id_hasil ASC");
+												while ($row_8 = mysql_fetch_array($sql4)) {
+													if ($row_8['keterangan'] == "gelap") {
+														$ket = "Dark";
+													} else if ($row_8['keterangan'] == "redup") {
+														$ket = "Rather Dim";
+													} else if ($row_8['keterangan'] == "agak_terang") {
+														$ket = "Bright";
+													} else if ($row_8['keterangan'] == "terang") {
+														$ket = "Very Bright";
+													} else {
+														$ket = $row_8['keterangan'];
+													}
 
-																echo "
+													echo "
 														<tr>
 															<td>" . $row['keterangan'] . " </td>
 															<td>" . $row['hasil'] . " </td> 															
@@ -1074,50 +1072,50 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 															
 														</tr>
 														";
-															}
-														}
-													}
-
-													$ra++;
 												}
-												?>
-											</table>
-											<hr />
+											}
+										}
+
+										$ra++;
+									}
+									?>
+								</table>
+								<hr />
 
 
-											<!-- PERHITUNGAN UNTUK APPLICATION -------------------------------------------------------------------------------------------->
+								<!-- PERHITUNGAN UNTUK APPLICATION -------------------------------------------------------------------------------------------->
 
-											<h4>APPLICATION</h1>
-												<table class='table table-bordered' style="width:930px">
-													<?php
-													$ra = 0;
+								<h4>APPLICATION</h1>
+									<table class='table table-bordered' style="width:930px">
+										<?php
+										$ra = 0;
 
-													$sql = mysql_query("SELECT * from tb_hasil where golongan='0' ");
-													while ($row = mysql_fetch_array($sql)) {
+										$sql = mysql_query("SELECT * from tb_hasil where golongan='0' ");
+										while ($row = mysql_fetch_array($sql)) {
 
 
 
-														echo "
+											echo "
 										
 									";
-														$sql2 = mysql_query("SELECT * from tb_hasil where golongan='1' ");
-														while ($row_6 = mysql_fetch_array($sql2)) {
-															$sql22 = mysql_query("SELECT * from tb_hasil where golongan='2' ");
-															while ($row_7 = mysql_fetch_array($sql22)) {
-																$sql4 = mysql_query("SELECT * from tb_hasil where golongan='3' ");
-																while ($row_8 = mysql_fetch_array($sql4)) {
-																	if ($row_8['keterangan'] == "gelap") {
-																		$ket = "Dark";
-																	} else if ($row_8['keterangan'] == "redup") {
-																		$ket = "Rather Dim";
-																	} else if ($row_8['keterangan'] == "agak_terang") {
-																		$ket = "Bright";
-																	} else if ($row_8['keterangan'] == "terang") {
-																		$ket = "Very Bright";
-																	} else {
-																		$ket = $row_8['keterangan'];
-																	}
-																	/*
+											$sql2 = mysql_query("SELECT * from tb_hasil where golongan='1' ");
+											while ($row_6 = mysql_fetch_array($sql2)) {
+												$sql22 = mysql_query("SELECT * from tb_hasil where golongan='2' ");
+												while ($row_7 = mysql_fetch_array($sql22)) {
+													$sql4 = mysql_query("SELECT * from tb_hasil where golongan='3' ");
+													while ($row_8 = mysql_fetch_array($sql4)) {
+														if ($row_8['keterangan'] == "gelap") {
+															$ket = "Dark";
+														} else if ($row_8['keterangan'] == "redup") {
+															$ket = "Rather Dim";
+														} else if ($row_8['keterangan'] == "agak_terang") {
+															$ket = "Bright";
+														} else if ($row_8['keterangan'] == "terang") {
+															$ket = "Very Bright";
+														} else {
+															$ket = $row_8['keterangan'];
+														}
+														/*
 															echo"
 															<tr>
 																<td>".$row['keterangan']." </td> <td>".$row_6['keterangan']."</td><td>".$row_7['keterangan']."</td><td>".$ket."</td>
@@ -1128,7 +1126,7 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 															</tr>
 															";
 														*/
-																	echo "
+														echo "
 															<tr>
 																<td>" . $row['keterangan'] . " </td> <td>" . $row_6['keterangan'] . "</td><td>" . $row_7['keterangan'] . "</td><td>" . $ket . "</td>
 																<td>MIN(" . $row['hasil'] . "," . $row_6['hasil'] . "," . $row_7['hasil'] . "," . $row_8['hasil'] . ")</td>
@@ -1136,50 +1134,50 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 																
 															</tr>
 															";
-																}
-															}
-														}
-
-														$ra++;
 													}
-													?>
-												</table>
-												<hr />
+												}
+											}
+
+											$ra++;
+										}
+										?>
+									</table>
+									<hr />
 
 
-												<!-- PERHITUNGAN UNTUK FUZYFICATION -------------------------------------------------------------------------------------------->
+									<!-- PERHITUNGAN UNTUK FUZYFICATION -------------------------------------------------------------------------------------------->
 
-												<h4>IMPLICATION</h1>
-													<table class='table table-bordered' style="width:930px">
-														<?php
-														$ra = 0;
-														$nomor = 1;
-														$sql = mysql_query("SELECT * from tb_hasil where golongan='0' ");
-														while ($row = mysql_fetch_array($sql)) {
+									<h4>IMPLICATION</h1>
+										<table class='table table-bordered' style="width:930px">
+											<?php
+											$ra = 0;
+											$nomor = 1;
+											$sql = mysql_query("SELECT * from tb_hasil where golongan='0' ");
+											while ($row = mysql_fetch_array($sql)) {
 
 
-															echo "
+												echo "
 										
 									";
-															$sql2 = mysql_query("SELECT * from tb_hasil where golongan='1' ");
-															while ($row_6 = mysql_fetch_array($sql2)) {
-																$sql22 = mysql_query("SELECT * from tb_hasil where golongan='2' ");
-																while ($row_7 = mysql_fetch_array($sql22)) {
-																	$sql4 = mysql_query("SELECT * from tb_hasil where golongan='3' ");
-																	while ($row_8 = mysql_fetch_array($sql4)) {
-																		if ($row_8['keterangan'] == "gelap") {
-																			$ket = "Dark";
-																		} else if ($row_8['keterangan'] == "redup") {
-																			$ket = "Rather Dim";
-																		} else if ($row_8['keterangan'] == "agak_terang") {
-																			$ket = "Bright";
-																		} else if ($row_8['keterangan'] == "terang") {
-																			$ket = "Very Bright";
-																		} else {
-																			$ket = $row_8['keterangan'];
-																		}
+												$sql2 = mysql_query("SELECT * from tb_hasil where golongan='1' ");
+												while ($row_6 = mysql_fetch_array($sql2)) {
+													$sql22 = mysql_query("SELECT * from tb_hasil where golongan='2' ");
+													while ($row_7 = mysql_fetch_array($sql22)) {
+														$sql4 = mysql_query("SELECT * from tb_hasil where golongan='3' ");
+														while ($row_8 = mysql_fetch_array($sql4)) {
+															if ($row_8['keterangan'] == "gelap") {
+																$ket = "Dark";
+															} else if ($row_8['keterangan'] == "redup") {
+																$ket = "Rather Dim";
+															} else if ($row_8['keterangan'] == "agak_terang") {
+																$ket = "Bright";
+															} else if ($row_8['keterangan'] == "terang") {
+																$ket = "Very Bright";
+															} else {
+																$ket = $row_8['keterangan'];
+															}
 
-																		echo "
+															echo "
 															<tr>
 																<td>" . $row['keterangan'] . " </td> <td>" . $row_6['keterangan'] . "</td><td>" . $row_7['keterangan'] . "</td><td>" . $ket . "</td>
 																<td>" . get_rule_kondisi($row['keterangan'], $row_6['keterangan'], $row_7['keterangan'], $row_8['keterangan']) . "</td>
@@ -1188,112 +1186,111 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 															</tr>
 															";
 
-																		mysql_query("INSERT INTO tb_hasil_2(urutan,golongan,nilai,keterangan,hasil)VALUES('$nomor','" . get_rule_kondisi($row['keterangan'], $row_6['keterangan'], $row_7['keterangan'], $row_8['keterangan']) . "','" . $_POST['suhu'] . "','" . $row['keterangan'] . "','" . MIN($row['hasil'], $row_6['hasil'], $row_7['hasil'], $row_8['hasil']) . "')");
-																	}
-																}
-															}
-
-															$ra++;
-															$nomor++;
+															mysql_query("INSERT INTO tb_hasil_2(urutan,golongan,nilai,keterangan,hasil)VALUES('$nomor','" . get_rule_kondisi($row['keterangan'], $row_6['keterangan'], $row_7['keterangan'], $row_8['keterangan']) . "','" . $_POST['suhu'] . "','" . $row['keterangan'] . "','" . MIN($row['hasil'], $row_6['hasil'], $row_7['hasil'], $row_8['hasil']) . "')");
 														}
-														?>
-													</table>
-													<hr />
+													}
+												}
 
-													<!-- PERHITUNGAN UNTUK FUZYFICATION -------------------------------------------------------------------------------------------->
+												$ra++;
+												$nomor++;
+											}
+											?>
+										</table>
+										<hr />
 
-													<h4>AGGREGATION</h1>
-														<table class='table table-bordered' style="width:930px">
-															<?php
+										<!-- PERHITUNGAN UNTUK FUZYFICATION -------------------------------------------------------------------------------------------->
 
-															function get_duration($kondisi_1, $nilai_set)
-															{
-																$nilai = 0;
-																$sql = mysql_query("SELECT * from tb_rule_duration where keterangan='" . $kondisi_1 . "' LIMIT 0,4");
-																while ($row = mysql_fetch_array($sql)) {
-																	$nilai = $nilai + $row['nilai'];
-																}
-																$nilanya = $nilai * $nilai_set;
-																return $nilanya;
-															}
-															$ra = 0;
-															$nomor = 1;
-															//$total=0;
-															//$total_bagi=0;
-															$sql = mysql_query("SELECT golongan,MAX(hasil)as total_max from tb_hasil_2 GROUP BY golongan ");
-															while ($row = mysql_fetch_array($sql)) {
-																//$total_set=$row['total_max']*4;
-																echo "<tr><td>" . $row['golongan'] . " " . $row['total_max'] . "</td></tr>";
-																//$total=$total+get_duration($row['golongan'],$row['total_max']);
-																//$total_bagi=$total_bagi+$total_set;
-																$ra++;
-																$nomor++;
-															}
-															echo "";
+										<h4>AGGREGATION</h1>
+											<table class='table table-bordered' style="width:930px">
+												<?php
 
-															?>
-														</table>
+												function get_duration($kondisi_1, $nilai_set)
+												{
+													$nilai = 0;
+													$sql = mysql_query("SELECT * from tb_rule_duration where keterangan='" . $kondisi_1 . "' LIMIT 0,4");
+													while ($row = mysql_fetch_array($sql)) {
+														$nilai = $nilai + $row['nilai'];
+													}
+													$nilanya = $nilai * $nilai_set;
+													return $nilanya;
+												}
+												$ra = 0;
+												$nomor = 1;
+												//$total=0;
+												//$total_bagi=0;
+												$sql = mysql_query("SELECT golongan,MAX(hasil)as total_max from tb_hasil_2 GROUP BY golongan ");
+												while ($row = mysql_fetch_array($sql)) {
+													//$total_set=$row['total_max']*4;
+													echo "<tr><td>" . $row['golongan'] . " " . $row['total_max'] . "</td></tr>";
+													//$total=$total+get_duration($row['golongan'],$row['total_max']);
+													//$total_bagi=$total_bagi+$total_set;
+													$ra++;
+													$nomor++;
+												}
+												echo "";
 
-
-														<!-- PERHITUNGAN UNTUK DEFUZYFICATION -------------------------------------------------------------------------------------------->
-
-														<h4>DEFUZZIFICATION</h1>
-															<table class='table table-bordered' style="width:930px">
-																<?php
-
-																$ra = 0;
-																$nomor = 1;
-																//$total=0;
-																//$total_bagi=0;
-																$sql = mysql_query("SELECT golongan,MAX(hasil)as total_max from tb_hasil_2 GROUP BY golongan  ORDER BY hasil DESC limit 0,1 ");
-																while ($row = mysql_fetch_array($sql)) {
-																	$gol = $row['golongan'];
-																	$total_set = $row['total_max'] * 4;
-																	echo "<tr><td>" . $row['golongan'] . "</td></tr>";
-																	//$total=$total+get_duration($row['golongan'],$row['total_max']);
-																	//$total_bagi=$total_bagi+$total_set;
-																	if ($row['golongan'] == "Very Short") {
-																		$hasil_detik = 12;
-																	} else if ($row['golongan'] == "Short") {
-																		$hasil_detik = 24;
-																	} else if ($row['golongan'] == "Medium") {
-																		$hasil_detik = 36;
-																	} else if ($row['golongan'] == "Very Long") {
-																		$hasil_detik = 60;
-																	} else if ($row['golongan'] == "Long") {
-																		$hasil_detik = 48;
-																	}
-																	$ra++;
-																	$nomor++;
-																}
-																echo "";
-																?>
-															</table>
+												?>
+											</table>
 
 
-															<hr />
+											<!-- PERHITUNGAN UNTUK DEFUZYFICATION -------------------------------------------------------------------------------------------->
 
-															<?php
-															$hasil_meni = $hasil_detik;
-															//		$hasil_meni=$hasil_detik;
-															//	echo"<tr><td>".round($hasil_meni)." Detik</td></tr>";
-															mysql_query("INSERT INTO tb_hasil_menit(tanggal,suhu,sm,humidity,li,aggre,defuz,nilai)VALUES('" . $_POST['tanggal'] . "','" . $_POST['suhu'] . "','" . $_POST['sm'] . "','" . $_POST['hm'] . "','" . $_POST['li'] . "','" . $_POST['aggre'] . "','$gol','" . $hasil_meni . "')");
-															?>
-									</div>
-								</div>
-							</div>
+											<h4>DEFUZZIFICATION</h1>
+												<table class='table table-bordered' style="width:930px">
+													<?php
 
+													$ra = 0;
+													$nomor = 1;
+													//$total=0;
+													//$total_bagi=0;
+													$sql = mysql_query("SELECT golongan,MAX(hasil)as total_max from tb_hasil_2 GROUP BY golongan  ORDER BY hasil DESC limit 0,1 ");
+													while ($row = mysql_fetch_array($sql)) {
+														$gol = $row['golongan'];
+														$total_set = $row['total_max'] * 4;
+														echo "<tr><td>" . $row['golongan'] . "</td></tr>";
+														//$total=$total+get_duration($row['golongan'],$row['total_max']);
+														//$total_bagi=$total_bagi+$total_set;
+														if ($row['golongan'] == "Very Short") {
+															$hasil_detik = 12;
+														} else if ($row['golongan'] == "Short") {
+															$hasil_detik = 24;
+														} else if ($row['golongan'] == "Medium") {
+															$hasil_detik = 36;
+														} else if ($row['golongan'] == "Very Long") {
+															$hasil_detik = 60;
+														} else if ($row['golongan'] == "Long") {
+															$hasil_detik = 48;
+														}
+														$ra++;
+														$nomor++;
+													}
+													echo "";
+													?>
+												</table>
+
+
+												<hr />
+
+												<?php
+												$hasil_meni = $hasil_detik;
+												//		$hasil_meni=$hasil_detik;
+												//	echo"<tr><td>".round($hasil_meni)." Detik</td></tr>";
+												mysql_query("INSERT INTO tb_hasil_menit(tanggal,suhu,sm,humidity,li,aggre,defuz,nilai)VALUES('" . $_POST['tanggal'] . "','" . $_POST['suhu'] . "','" . $_POST['sm'] . "','" . $_POST['hm'] . "','" . $_POST['li'] . "','" . $_POST['aggre'] . "','$gol','" . $hasil_meni . "')");
+												?>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- /#page-content-wrapper -->
 
+			</div>
 		</div>
 	</div>
 </div>
+<!-- /#page-content-wrapper -->
+
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="js/jquery.canvasjs.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 <script>
 	window.onload = function() {
 
@@ -2399,4 +2396,3 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 <?php
 include "templete/footer.php";
 ?>
-
