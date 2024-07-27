@@ -2415,12 +2415,12 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 
 
 <!-- Menu Toggle Script -->
-<script>
+<!-- <script>
 	$("#menu-toggle").click(function(e) {
 		e.preventDefault();
 		$("#wrapper").toggleClass("toggled");
 	});
-</script>
+</script> -->
 
 <?php
 include "templete/footer.php";
