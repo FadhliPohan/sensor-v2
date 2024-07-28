@@ -187,7 +187,7 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#menu1">Temperature</a></li>
-					<li><a data-toggle="tab" href="#menu2">Soil Moisture</a></li>
+					<li><a data-toggle="tab" href="#menu2">Soil Moisture1</a></li>
 					<li><a data-toggle="tab" href="#menu3">Humidity</a></li>
 					<li><a data-toggle="tab" href="#menu4">Intensity</a></li>
 					<li><a data-toggle="tab" href="#menu5">Result</a></li>
