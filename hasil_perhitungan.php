@@ -185,15 +185,15 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 		<div class="datatable">
 			<div class="container">
 
-				<!-- <ul class="nav nav-pills user-profile-tab" id="pills-tab" role="tablist">
+				<ul class="nav nav-pills user-profile-tab" id="pills-tab" role="tablist">
 					<li class="nav-item active mr-1"><a data-toggle="tab" href="#menu1">Temperature</a></li>
 					<li class="nav-item mr-1"><a data-toggle="tab" href="#menu2">Soil Moisture</a></li>
 					<li class="nav-item mr-1"><a data-toggle="tab" href="#menu3">Humidity</a></li>
 					<li class="nav-item mr-1"><a data-toggle="tab" href="#menu4">Intensity</a></li>
 					<li class="nav-item mr-1"><a data-toggle="tab" href="#menu5">Result</a></li>
-				</ul> -->
+				</ul>
 
-				<ul class="nav nav-pills user-profile-tab" id="pills-tab" role="tablist">
+				<!-- <ul class="nav nav-pills user-profile-tab" id="pills-tab" role="tablist">
 					<li class="nav-item" role="presentation">
 
 						<a class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-4" data-toggle="tab" href="#menu1">Temperature</a>
@@ -217,7 +217,7 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 						<a class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-4" data-toggle="tab" href="#menu5">Result</a>
 
 					</li>
-				</ul>
+				</ul> -->
 
 				<div class="tab-content">
 					<div id="menu1" class="tab-pane fade in active"><br /><br />
