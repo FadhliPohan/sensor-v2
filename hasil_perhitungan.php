@@ -184,19 +184,19 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 			<li class="nav-item" role="presentation">
 				<button class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-4" id="pills-notifications-tab" data-bs-toggle="pill" data-bs-target="#pills-notifications" type="button" role="tab" aria-controls="pills-notifications" aria-selected="false">
 					<i class="ti ti-bell me-2 fs-6"></i>
-					<span class="d-none d-md-block">Notifications</span>
+					<span class="d-none d-md-block">Soil Moisture</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
 				<button class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-4" id="pills-bills-tab" data-bs-toggle="pill" data-bs-target="#pills-bills" type="button" role="tab" aria-controls="pills-bills" aria-selected="false">
 					<i class="ti ti-article me-2 fs-6"></i>
-					<span class="d-none d-md-block">Bills</span>
+					<span class="d-none d-md-block">Humidity</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
 				<button class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-4" id="pills-security-tab" data-bs-toggle="pill" data-bs-target="#pills-security" type="button" role="tab" aria-controls="pills-security" aria-selected="false">
 					<i class="ti ti-lock me-2 fs-6"></i>
-					<span class="d-none d-md-block">Security</span>
+					<span class="d-none d-md-block">Intensity</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
@@ -920,7 +920,269 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 				<div class="tab-pane fade" id="pills-result" role="tabpanel" aria-labelledby="pills-result-tab" tabindex="0">
 					<!-- Result -->
 					<div class="row">
-						<h1>ini result</h1>
+
+
+						<!-- PERHITUNGAN UNTUK FUZYFICATION -------------------------------------------------------------------------------------------->
+
+						<hr />
+						<h4>FUZZIFICATION</h4>
+						<table class='table table-bordered' style="width:930px">
+							<?php
+							$ra = 0;
+							function get_rule_kondisi($kondisi_1, $kondisi_2, $kondisi_3)
+							{
+								$sql = mysql_query("SELECT * from tb_rule_kondisi where kondisi_1 LIKE '%$kondisi_1%' and kondisi_2 LIKE '" . $kondisi_2 . "'  and kondisi_3 LIKE '" . $kondisi_3 . "' ");
+								while ($row = mysql_fetch_array($sql)) {
+									$kondisi = $row['hasil'];
+								}
+								return $kondisi;
+							}
+							$sql = mysql_query("SELECT * from tb_hasil where golongan='0' ORDER BY id_hasil ASC");
+							while ($row = mysql_fetch_array($sql)) {
+
+								echo "
+										
+									";
+								$sql2 = mysql_query("SELECT * from tb_hasil where golongan='1' ORDER BY id_hasil ASC");
+								$nomor1 = 1;
+								while ($row_6 = mysql_fetch_array($sql2)) {
+									$nomor2 = 2;
+									$sql3 = mysql_query("SELECT * from tb_hasil where golongan='2' ORDER BY id_hasil ASC");
+									while ($row_7 = mysql_fetch_array($sql3)) {
+										$sql4 = mysql_query("SELECT * from tb_hasil where golongan='3' ORDER BY id_hasil ASC");
+										while ($row_8 = mysql_fetch_array($sql4)) {
+											if ($row_8['keterangan'] == "gelap") {
+												$ket = "Dark";
+											} else if ($row_8['keterangan'] == "redup") {
+												$ket = "Rather Dim";
+											} else if ($row_8['keterangan'] == "agak_terang") {
+												$ket = "Bright";
+											} else if ($row_8['keterangan'] == "terang") {
+												$ket = "Very Bright";
+											} else {
+												$ket = $row_8['keterangan'];
+											}
+
+											echo "
+														<tr>
+															<td>" . $row['keterangan'] . " </td>
+															<td>" . $row['hasil'] . " </td> 															
+															<td> " . $row_6['keterangan'] . "</td> 
+															<td>" . $row_6['hasil'] . "</td> 
+															
+															<td> " . $row_7['keterangan'] . "</td>
+															<td>" . $row_7['hasil'] . "</td>
+															
+															<td> " . $ket . "</td>
+															<td>" . $row_8['hasil'] . "</td>
+															
+														</tr>
+														";
+										}
+									}
+								}
+
+								$ra++;
+							}
+							?>
+						</table>
+						<hr />
+
+
+						<!-- PERHITUNGAN UNTUK APPLICATION -------------------------------------------------------------------------------------------->
+
+						<h4>APPLICATION</h4>
+						<table class='table table-bordered' style="width:930px">
+							<?php
+							$ra = 0;
+
+							$sql = mysql_query("SELECT * from tb_hasil where golongan='0' ");
+							while ($row = mysql_fetch_array($sql)) {
+
+
+
+								echo "
+										
+									";
+								$sql2 = mysql_query("SELECT * from tb_hasil where golongan='1' ");
+								while ($row_6 = mysql_fetch_array($sql2)) {
+									$sql22 = mysql_query("SELECT * from tb_hasil where golongan='2' ");
+									while ($row_7 = mysql_fetch_array($sql22)) {
+										$sql4 = mysql_query("SELECT * from tb_hasil where golongan='3' ");
+										while ($row_8 = mysql_fetch_array($sql4)) {
+											if ($row_8['keterangan'] == "gelap") {
+												$ket = "Dark";
+											} else if ($row_8['keterangan'] == "redup") {
+												$ket = "Rather Dim";
+											} else if ($row_8['keterangan'] == "agak_terang") {
+												$ket = "Bright";
+											} else if ($row_8['keterangan'] == "terang") {
+												$ket = "Very Bright";
+											} else {
+												$ket = $row_8['keterangan'];
+											}
+											/*
+															echo"
+															<tr>
+																<td>".$row['keterangan']." </td> <td>".$row_6['keterangan']."</td><td>".$row_7['keterangan']."</td><td>".$ket."</td>
+																<td>".get_rule_kondisi($row['keterangan'],$row_6['keterangan'],$row_7['keterangan'],$row_8['keterangan'])."</td>
+																<td>MIN(".$row['hasil'].",".$row_6['hasil'].",".$row_7['hasil'].",".$row_8['hasil'].")</td>
+																<td>".MIN($row['hasil'],$row_6['hasil'],$row_7['hasil'],$row_8['hasil'])."</td>
+																
+															</tr>
+															";
+														*/
+											echo "
+															<tr>
+																<td>" . $row['keterangan'] . " </td> <td>" . $row_6['keterangan'] . "</td><td>" . $row_7['keterangan'] . "</td><td>" . $ket . "</td>
+																<td>MIN(" . $row['hasil'] . "," . $row_6['hasil'] . "," . $row_7['hasil'] . "," . $row_8['hasil'] . ")</td>
+																<td>" . MIN($row['hasil'], $row_6['hasil'], $row_7['hasil'], $row_8['hasil']) . "</td>
+																
+															</tr>
+															";
+										}
+									}
+								}
+
+								$ra++;
+							}
+							?>
+						</table>
+						<hr />
+
+
+						<!-- PERHITUNGAN UNTUK FUZYFICATION -------------------------------------------------------------------------------------------->
+
+						<h4>IMPLICATION</h4>
+						<table class='table table-bordered' style="width:930px">
+							<?php
+							$ra = 0;
+							$nomor = 1;
+							$sql = mysql_query("SELECT * from tb_hasil where golongan='0' ");
+							while ($row = mysql_fetch_array($sql)) {
+
+
+								echo "
+										
+									";
+								$sql2 = mysql_query("SELECT * from tb_hasil where golongan='1' ");
+								while ($row_6 = mysql_fetch_array($sql2)) {
+									$sql22 = mysql_query("SELECT * from tb_hasil where golongan='2' ");
+									while ($row_7 = mysql_fetch_array($sql22)) {
+										$sql4 = mysql_query("SELECT * from tb_hasil where golongan='3' ");
+										while ($row_8 = mysql_fetch_array($sql4)) {
+											if ($row_8['keterangan'] == "gelap") {
+												$ket = "Dark";
+											} else if ($row_8['keterangan'] == "redup") {
+												$ket = "Rather Dim";
+											} else if ($row_8['keterangan'] == "agak_terang") {
+												$ket = "Bright";
+											} else if ($row_8['keterangan'] == "terang") {
+												$ket = "Very Bright";
+											} else {
+												$ket = $row_8['keterangan'];
+											}
+
+											echo "
+															<tr>
+																<td>" . $row['keterangan'] . " </td> <td>" . $row_6['keterangan'] . "</td><td>" . $row_7['keterangan'] . "</td><td>" . $ket . "</td>
+																<td>" . get_rule_kondisi($row['keterangan'], $row_6['keterangan'], $row_7['keterangan'], $row_8['keterangan']) . "</td>
+																<td>" . MIN($row['hasil'], $row_6['hasil'], $row_7['hasil'], $row_8['hasil']) . "</td>
+																
+															</tr>
+															";
+
+											mysql_query("INSERT INTO tb_hasil_2(urutan,golongan,nilai,keterangan,hasil)VALUES('$nomor','" . get_rule_kondisi($row['keterangan'], $row_6['keterangan'], $row_7['keterangan'], $row_8['keterangan']) . "','" . $_POST['suhu'] . "','" . $row['keterangan'] . "','" . MIN($row['hasil'], $row_6['hasil'], $row_7['hasil'], $row_8['hasil']) . "')");
+										}
+									}
+								}
+
+								$ra++;
+								$nomor++;
+							}
+							?>
+						</table>
+						<hr />
+
+						<!-- PERHITUNGAN UNTUK FUZYFICATION -------------------------------------------------------------------------------------------->
+
+						<h4>AGGREGATION</h4>
+						<table class='table table-bordered' style="width:930px">
+							<?php
+
+							function get_duration($kondisi_1, $nilai_set)
+							{
+								$nilai = 0;
+								$sql = mysql_query("SELECT * from tb_rule_duration where keterangan='" . $kondisi_1 . "' LIMIT 0,4");
+								while ($row = mysql_fetch_array($sql)) {
+									$nilai = $nilai + $row['nilai'];
+								}
+								$nilanya = $nilai * $nilai_set;
+								return $nilanya;
+							}
+							$ra = 0;
+							$nomor = 1;
+							//$total=0;
+							//$total_bagi=0;
+							$sql = mysql_query("SELECT golongan,MAX(hasil)as total_max from tb_hasil_2 GROUP BY golongan ");
+							while ($row = mysql_fetch_array($sql)) {
+								//$total_set=$row['total_max']*4;
+								echo "<tr><td>" . $row['golongan'] . " " . $row['total_max'] . "</td></tr>";
+								//$total=$total+get_duration($row['golongan'],$row['total_max']);
+								//$total_bagi=$total_bagi+$total_set;
+								$ra++;
+								$nomor++;
+							}
+							echo "";
+
+							?>
+						</table>
+
+
+						<!-- PERHITUNGAN UNTUK DEFUZYFICATION -------------------------------------------------------------------------------------------->
+
+						<h4>DEFUZZIFICATION</h4>
+						<table class='table table-bordered' style="width:930px">
+							<?php
+
+							$ra = 0;
+							$nomor = 1;
+							//$total=0;
+							//$total_bagi=0;
+							$sql = mysql_query("SELECT golongan,MAX(hasil)as total_max from tb_hasil_2 GROUP BY golongan  ORDER BY hasil DESC limit 0,1 ");
+							while ($row = mysql_fetch_array($sql)) {
+								$gol = $row['golongan'];
+								$total_set = $row['total_max'] * 4;
+								echo "<tr><td>" . $row['golongan'] . "</td></tr>";
+								//$total=$total+get_duration($row['golongan'],$row['total_max']);
+								//$total_bagi=$total_bagi+$total_set;
+								if ($row['golongan'] == "Very Short") {
+									$hasil_detik = 12;
+								} else if ($row['golongan'] == "Short") {
+									$hasil_detik = 24;
+								} else if ($row['golongan'] == "Medium") {
+									$hasil_detik = 36;
+								} else if ($row['golongan'] == "Very Long") {
+									$hasil_detik = 60;
+								} else if ($row['golongan'] == "Long") {
+									$hasil_detik = 48;
+								}
+								$ra++;
+								$nomor++;
+							}
+							echo "";
+							?>
+						</table>
+
+
+						<hr />
+
+						<?php
+						$hasil_meni = $hasil_detik;
+						//		$hasil_meni=$hasil_detik;
+						//	echo"<tr><td>".round($hasil_meni)." Detik</td></tr>";
+						mysql_query("INSERT INTO tb_hasil_menit(tanggal,suhu,sm,humidity,li,aggre,defuz,nilai)VALUES('" . $_POST['tanggal'] . "','" . $_POST['suhu'] . "','" . $_POST['sm'] . "','" . $_POST['hm'] . "','" . $_POST['li'] . "','" . $_POST['aggre'] . "','$gol','" . $hasil_meni . "')");
+						?>
 					</div>
 					<!-- Result -->
 				</div>
