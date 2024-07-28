@@ -50,7 +50,7 @@ include "templete/sidebar.php";
 								<button class="btn btn-primary " id="start">start</button></td>
 							<td colspan="2" bgcolor="#9966CC" style="text-align:center">
 								<h1><time>00:00:00</time></h1>
-								<h3 class="style1"> DURATION DRIP IRIGASI <?php echo $nilai; ?>
+								<h3 class="style1"> DURATION DRIP NUTRITION <?php echo $nilai; ?>
 									SECONDS</h3>
 							</td>
 							<td bgcolor="#9966CC" id="lampu"></td>
