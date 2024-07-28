@@ -199,6 +199,12 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 					<span class="d-none d-md-block">Security</span>
 				</button>
 			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-4" id="pills-result-tab" data-bs-toggle="pill" data-bs-target="#pills-result" type="button" role="tab" aria-controls="pills-result" aria-selected="false">
+					<i class="ti ti-lock me-2 fs-6"></i>
+					<span class="d-none d-md-block">Result</span>
+				</button>
+			</li>
 		</ul>
 		<div class="card-body">
 			<div class="tab-content" id="pills-tabContent">
@@ -395,331 +401,528 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 				<!-- Temperature -->
 
 				<div class="tab-pane fade" id="pills-notifications" role="tabpanel" aria-labelledby="pills-notifications-tab" tabindex="0">
-					<div class="row justify-content-center">
-						<div class="col-lg-9">
-							<div class="card">
-								<div class="card-body p-4">
-									<h4 class="fw-semibold mb-3">Notification Preferences</h4>
-									<p>
-										Select the notificaitons ou would like to receive via email. Please note that you cannot opt
-										out of receving service
-										messages, such as payment, security or legal notifications.
-									</p>
-									<form class="mb-7">
-										<label for="exampleInputtext5" class="form-label fw-semibold">Email Address*</label>
-										<input type="text" class="form-control" id="exampleInputtext5" placeholder="" required>
-										<p class="mb-0">Required for notificaitons.</p>
-									</form>
-									<div class="">
-										<div class="d-flex align-items-center justify-content-between mb-4">
-											<div class="d-flex align-items-center gap-3">
-												<div class="text-bg-light rounded-1 p-6 d-flex align-items-center justify-content-center">
-													<i class="ti ti-article text-dark d-block fs-7" width="22" height="22"></i>
-												</div>
-												<div>
-													<h5 class="fs-4 fw-semibold">Our newsletter</h5>
-													<p class="mb-0">We'll always let you know about important changes</p>
-												</div>
-											</div>
-											<div class="form-check form-switch mb-0">
-												<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
-											</div>
-										</div>
-										<div class="d-flex align-items-center justify-content-between mb-4">
-											<div class="d-flex align-items-center gap-3">
-												<div class="text-bg-light rounded-1 p-6 d-flex align-items-center justify-content-center">
-													<i class="ti ti-checkbox text-dark d-block fs-7" width="22" height="22"></i>
-												</div>
-												<div>
-													<h5 class="fs-4 fw-semibold">Order Confirmation</h5>
-													<p class="mb-0">You will be notified when customer order any product</p>
-												</div>
-											</div>
-											<div class="form-check form-switch mb-0">
-												<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked1" checked>
-											</div>
-										</div>
-										<div class="d-flex align-items-center justify-content-between mb-4">
-											<div class="d-flex align-items-center gap-3">
-												<div class="text-bg-light rounded-1 p-6 d-flex align-items-center justify-content-center">
-													<i class="ti ti-clock-hour-4 text-dark d-block fs-7" width="22" height="22"></i>
-												</div>
-												<div>
-													<h5 class="fs-4 fw-semibold">Order Status Changed</h5>
-													<p class="mb-0">You will be notified when customer make changes to the order</p>
-												</div>
-											</div>
-											<div class="form-check form-switch mb-0">
-												<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked2" checked>
-											</div>
-										</div>
-										<div class="d-flex align-items-center justify-content-between mb-4">
-											<div class="d-flex align-items-center gap-3">
-												<div class="text-bg-light rounded-1 p-6 d-flex align-items-center justify-content-center">
-													<i class="ti ti-truck-delivery text-dark d-block fs-7" width="22" height="22"></i>
-												</div>
-												<div>
-													<h5 class="fs-4 fw-semibold">Order Delivered</h5>
-													<p class="mb-0">You will be notified once the order is delivered</p>
-												</div>
-											</div>
-											<div class="form-check form-switch mb-0">
-												<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked3">
-											</div>
-										</div>
-										<div class="d-flex align-items-center justify-content-between">
-											<div class="d-flex align-items-center gap-3">
-												<div class="text-bg-light rounded-1 p-6 d-flex align-items-center justify-content-center">
-													<i class="ti ti-mail text-dark d-block fs-7" width="22" height="22"></i>
-												</div>
-												<div>
-													<h5 class="fs-4 fw-semibold">Email Notification</h5>
-													<p class="mb-0">Turn on email notificaiton to get updates through email</p>
-												</div>
-											</div>
-											<div class="form-check form-switch mb-0">
-												<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked4" checked>
-											</div>
-										</div>
-									</div>
-								</div>
+					<!-- Soil Moisture -->
+					<div class="row">
+						<br />
+						<div class="col-md-12">
+							<table class="table table-bordered" style="width:300px">
+								<tr>
+									<td>SOIL MOISTURE</td>
+									<td><?php echo $_POST['sm']; ?>
+								</tr>
+							</table>
+							<div style="height:30px;width:800px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:30px; position:absolute ">
+								<!-- <table>
+							<tr> -->
+								<?php
+
+
+								if (!empty($vc2)) {
+									echo '<span style="margin-left: 100px;">Very Dry</span>';
+								}
+								if (!empty($c2)) {
+									echo '<span style="margin-left: 230px;">Dry</span>';
+								}
+								if (!empty($n2)) {
+									echo '<span style="margin-left: 130px;">Normal</span>';
+								}
+								if (!empty($h2)) {
+									echo '<span style="margin-left: 160px;">Wet</span>';
+								}
+								if (!empty($vh2)) {
+									echo '<span style="margin-left: 240px;">Very Wet</span>';
+								}
+								?>
+
+								<!-- </tr>
+							</table> -->
 							</div>
-						</div>
-						<div class="col-lg-9">
-							<div class="card">
-								<div class="card-body p-4">
-									<h4 class="fw-semibold mb-3">Date & Time</h4>
-									<p>Time zones and calendar display settings.</p>
-									<div class="d-flex align-items-center justify-content-between mt-7">
-										<div class="d-flex align-items-center gap-3">
-											<div class="text-bg-light rounded-1 p-6 d-flex align-items-center justify-content-center">
-												<i class="ti ti-clock-hour-4 text-dark d-block fs-7" width="22" height="22"></i>
-											</div>
-											<div>
-												<p class="mb-0">Time zone</p>
-												<h5 class="fs-4 fw-semibold">(UTC + 02:00) Athens, Bucharet</h5>
-											</div>
-										</div>
-										<a class="text-dark fs-6 d-flex align-items-center justify-content-center bg-transparent p-2 fs-4 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download">
-											<i class="ti ti-download"></i>
-										</a>
-									</div>
-								</div>
+							<div style="margin-left:17px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:69px; position: absolute">
+								<span style='color:black'>Y</span>
+
 							</div>
-						</div>
-						<div class="col-lg-9">
-							<div class="card">
-								<div class="card-body p-4">
-									<h4 class="fw-semibold mb-3">Ignore Tracking</h4>
-									<div class="d-flex align-items-center justify-content-between mt-7">
-										<div class="d-flex align-items-center gap-3">
-											<div class="text-bg-light rounded-1 p-6 d-flex align-items-center justify-content-center">
-												<i class="ti ti-player-pause text-dark d-block fs-7" width="22" height="22"></i>
-											</div>
-											<div>
-												<h5 class="fs-4 fw-semibold">Ignore Browser Tracking</h5>
-												<p class="mb-0">Browser Cookie</p>
-											</div>
-										</div>
-										<div class="form-check form-switch mb-0">
-											<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked5">
-										</div>
-									</div>
-								</div>
+							<div style="margin-left:500px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:355px; position: absolute">
+								<span style='color:black'>Soil Moisture (%)</span>
+
 							</div>
-						</div>
-						<div class="col-12">
-							<div class="d-flex align-items-center justify-content-end gap-3">
-								<button class="btn btn-primary">Save</button>
-								<button class="btn bg-danger-subtle text-danger">Cancel</button>
+							<div style="margin-left:730px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:390px; position: absolute">
+
 							</div>
+							<div style="margin-left:1px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:387px; position: absolute">
+
+							</div>
+
+							<div id="chartContainer2" style="height: 370px;width:800px;"></div>
+
+							<br /><br />
 						</div>
+
+						<table class='table table-bordered'>
+
+							<?php
+							$nomor = 1;
+							$nomor2 = 3;
+							$suhu = $_POST['sm'];
+							$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='1' and nilai='" . $_POST['sm'] . "' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
+							while ($row = mysql_fetch_array($sql)) {
+								$sql2 = mysql_query("SELECT MIN( nilai ) AS nilai_bawah, MAX( nilai ) AS nilai_atas
+											FROM  `tb_rule` 
+											WHERE is_golongan =  '1'
+											AND keterangan =  '" . $row['keterangan'] . "'
+											AND is_sub_golongan='" . $row['is_sub_golongan'] . "'
+											");
+								while ($row2 = mysql_fetch_array($sql2)) {
+									$nilai_a = number_format($row2['nilai_bawah'], 2);
+									$nilai_c = number_format($row2['nilai_atas'], 2);
+
+									$nilai_tengah_awal = $nilai_c - $nilai_a;
+									$nilai_tengah_pros = $nilai_tengah_awal / 2;
+									$nilai_tengah_akhir = number_format($row2['nilai_bawah'] + $nilai_tengah_pros, 2);
+									if ($row['is_sub_golongan'] == 1) {
+										if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+
+											$rumus = "(d-x) / (d-c)";
+											$hasil = ($row2['nilai_atas'] - $suhu) / ($row2['nilai_atas'] - $nilai_tengah_akhir);
+										} else if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+											$rumus = "(x-a) / (b-a)";
+											$hasil = @(($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']));
+										} else {
+											$rumus = "0";
+											$hasil = 0;
+										}
+									} else {
+										if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+											$rumus = "(x-a) / (b-a)";
+											$hasil = ($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']);
+										} else if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+											$rumus = "(c-x) / (c-b)";
+											$hasil = @(($nilai_c - $suhu) / ($nilai_c - $nilai_tengah_akhir));
+										} else {
+											$rumus = "0";
+											$hasil = 0;
+										}
+									}
+								}
+								$nomor++;
+								$nomor2++;
+							}
+							?>
+						</table>
+
+
+						<br /><br /><br />
+						<table class="table table-bordered" style="width:900px">
+							<tr>
+								<td>Fuzzy Set</td>
+							</tr>
+
+							<?php
+							$nomor = 1;
+
+							$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='1' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
+							while ($row = mysql_fetch_array($sql)) {
+								if ($row['is_sub_golongan'] == 1) {
+									$nama_golongan = "Trapezoid";
+									$nilai_b = "D";
+								} else {
+									$nama_golongan = "Triangle";
+									$nilai_b = "B";
+								}
+								if ($row['keterangan_nilai'] == "Very Dry") {
+									$status_a = "(B)";
+									$status_c = "(C)";
+									$status_d = "(D)";
+								} else {
+									$status_a = "(A)";
+								}
+
+								if ($row['keterangan_nilai'] == "Very Wet") {
+
+									$status_d = "(B)";
+									$status_c = "(C)";
+								}
+								if ($row['keterangan_nilai'] == "Dry") {
+									$status_a = "(A)";
+
+									$status_d = "(B)";
+									$status_c = "(C)";
+								}
+
+								echo "
+								<tr>
+								<td colspan='5' style='background-color:silver'>" . $row['keterangan_nilai'] . "</td>
+								
+								</tr>
+								<tr>
+								<td>Curve Representation</td>
+								<td> $nama_golongan</td>
+								</tr>
+								<tr>
+									<td>$status_a=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['sm'], $row['keterangan_nilai'], 1, "a") . "</td>
+									<td>$status_d=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['sm'], $row['keterangan_nilai'], 1, "b") . "</td>
+									
+									<td>$status_c=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['sm'], $row['keterangan_nilai'], 1, "c") . "</td>
+									<td>(Formula)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['sm'], $row['keterangan_nilai'], 1, "r") . "</td>
+									<td>(Result)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['sm'], $row['keterangan_nilai'], 1, "h") . "</td>
+									
+								</tr>
+								";
+								if (nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['sm'], $row['keterangan_nilai'], 1, "h") == "") { } else {
+									mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','1','" . $_POST['sm'] . "','" . $row['keterangan_nilai'] . "','" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['sm'], $row['keterangan_nilai'], 1, "h") . "','$nomor2')");
+								}
+							}
+							?>
+						</table>
 					</div>
+					<!-- Soil Moisture -->
 				</div>
 				<div class="tab-pane fade" id="pills-bills" role="tabpanel" aria-labelledby="pills-bills-tab" tabindex="0">
-					<div class="row justify-content-center">
-						<div class="col-lg-9">
-							<div class="card">
-								<div class="card-body p-4">
-									<h4 class="fw-semibold mb-3">Billing Information</h4>
-									<form>
-										<div class="row">
-											<div class="col-lg-6">
-												<div class="mb-4">
-													<label for="exampleInputtext6" class="form-label fw-semibold">Business
-														Name*</label>
-													<input type="text" class="form-control" id="exampleInputtext6" placeholder="Visitor Analytics">
-												</div>
-												<div class="mb-4">
-													<label for="exampleInputtext7" class="form-label fw-semibold">Business
-														Address*</label>
-													<input type="text" class="form-control" id="exampleInputtext7" placeholder="">
-												</div>
-												<div class="">
-													<label for="exampleInputtext8" class="form-label fw-semibold">First Name*</label>
-													<input type="text" class="form-control" id="exampleInputtext8" placeholder="">
-												</div>
-											</div>
-											<div class="col-lg-6">
-												<div class="mb-4">
-													<label for="exampleInputtext9" class="form-label fw-semibold">Business
-														Sector*</label>
-													<input type="text" class="form-control" id="exampleInputtext9" placeholder="Arts, Media & Entertainment">
-												</div>
-												<div class="mb-4">
-													<label for="exampleInputtext10" class="form-label fw-semibold">Country*</label>
-													<input type="text" class="form-control" id="exampleInputtext10" placeholder="Romania">
-												</div>
-												<div class="">
-													<label for="exampleInputtext11" class="form-label fw-semibold">Last Name*</label>
-													<input type="text" class="form-control" id="exampleInputtext11" placeholder="">
-												</div>
-											</div>
-										</div>
-									</form>
-								</div>
+					<!-- Humidity -->
+					<div class="row">
+						</h2><br />
+						<div class="col-md-12">
+							<table class="table table-bordered" style="width:300px">
+								<tr>
+									<td>HUMIDITY</td>
+									<td><?php echo $_POST['hm']; ?>
+								</tr>
+							</table>
+							<div style="height:30px;width:800px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:30px; position:absolute ">
+								<!-- <table>
+								<tr> -->
+								<?php
+
+
+								if (!empty($vc3)) {
+									echo '<span style="margin-left: 100px;">Very Low</span>';
+								}
+								if (!empty($c3)) {
+									echo '<span style="margin-left: 190px;">Low</span>';
+								}
+								if (!empty($n3)) {
+									echo '<span style="margin-left: 230px;">Normal</span>';
+								}
+								if (!empty($h3)) {
+									echo '<span style="margin-left: 250px;">High</span>';
+								}
+								if (!empty($vh3)) {
+									echo '<span style="margin-left: 160px;">Very High</span>';
+								}
+								?>
+
+								<!-- </tr>
+								</table> -->
 							</div>
-						</div>
-						<div class="col-lg-9">
-							<div class="card">
-								<div class="card-body p-4">
-									<h4 class="fw-semibold mb-3">Current Plan : <span class="text-success">Executive</span></h4>
-									<p>Thanks for being a premium member and supporting our development.</p>
-									<div class="d-flex align-items-center justify-content-between mt-7 mb-3">
-										<div class="d-flex align-items-center gap-3">
-											<div class="text-bg-light rounded-1 p-6 d-flex align-items-center justify-content-center">
-												<i class="ti ti-package text-dark d-block fs-7" width="22" height="22"></i>
-											</div>
-											<div>
-												<p class="mb-0">Current Plan</p>
-												<h5 class="fs-4 fw-semibold">750.000 Monthly Visits</h5>
-											</div>
-										</div>
-										<a class="text-dark fs-6 d-flex align-items-center justify-content-center bg-transparent p-2 fs-4 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add">
-											<i class="ti ti-circle-plus"></i>
-										</a>
-									</div>
-									<div class="d-flex align-items-center gap-3">
-										<button class="btn btn-primary">Change Plan</button>
-										<button class="btn btn-outline-danger">Reset Plan</button>
-									</div>
-								</div>
+							<div style="margin-left:17px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:69px; position: absolute">
+								<span style='color:black'>Y</span>
+
 							</div>
-						</div>
-						<div class="col-lg-9">
-							<div class="card">
-								<div class="card-body p-4">
-									<h4 class="fw-semibold mb-3">Payment Method</h4>
-									<p>On 26 December, 2023</p>
-									<div class="d-flex align-items-center justify-content-between mt-7">
-										<div class="d-flex align-items-center gap-3">
-											<div class="text-bg-light rounded-1 p-6 d-flex align-items-center justify-content-center">
-												<i class="ti ti-credit-card text-dark d-block fs-7" width="22" height="22"></i>
-											</div>
-											<div>
-												<h5 class="fs-4 fw-semibold">Visa</h5>
-												<p class="mb-0 text-dark">*****2102</p>
-											</div>
-										</div>
-										<a class="text-dark fs-6 d-flex align-items-center justify-content-center bg-transparent p-2 fs-4 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit">
-											<i class="ti ti-pencil-minus"></i>
-										</a>
-									</div>
-									<p class="my-2">If you updated your payment method, it will only be dislpayed here after your
-										next billing cycle.</p>
-									<div class="d-flex align-items-center gap-3">
-										<button class="btn btn-outline-danger">Cancel Subscription</button>
-									</div>
-								</div>
+							<div style="margin-left:500px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:355px; position: absolute">
+								<span style='color:black'>Humidity (%)</span>
+
 							</div>
-						</div>
-						<div class="col-12">
-							<div class="d-flex align-items-center justify-content-end gap-3">
-								<button class="btn btn-primary">Save</button>
-								<button class="btn bg-danger-subtle text-danger">Cancel</button>
+							<div style="margin-left:730px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:390px; position: absolute">
+
 							</div>
+							<div style="margin-left:1px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:387px; position: absolute">
+
+							</div>
+							<div id="chartContainer3" style="height: 370px;width:800px;"></div>
+							<br /><br />
 						</div>
+
+						<table class='table table-bordered'>
+
+							<?php
+							$nomor = 1;
+							$nomor3 = 5;
+							$suhu = $_POST['hm'];
+							$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='2' and nilai='" . $_POST['hm'] . "' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
+							while ($row = mysql_fetch_array($sql)) {
+								$sql2 = mysql_query("SELECT MIN( nilai ) AS nilai_bawah, MAX( nilai ) AS nilai_atas
+											FROM  `tb_rule` 
+											WHERE is_golongan =  '2'
+											AND keterangan =  '" . $row['keterangan'] . "'
+											AND is_sub_golongan='" . $row['is_sub_golongan'] . "'
+											");
+								while ($row2 = mysql_fetch_array($sql2)) {
+									$nilai_a = number_format($row2['nilai_bawah'], 2);
+									$nilai_c = number_format($row2['nilai_atas'], 2);
+
+									$nilai_tengah_awal = $nilai_c - $nilai_a;
+									$nilai_tengah_pros = $nilai_tengah_awal / 2;
+									$nilai_tengah_akhir = number_format($row2['nilai_bawah'] + $nilai_tengah_pros, 2);
+									if ($row['is_sub_golongan'] == 1) {
+										if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+
+											$rumus = "(d-x) / (d-c)";
+											$hasil = ($row2['nilai_atas'] - $suhu) / ($row2['nilai_atas'] - $nilai_tengah_akhir);
+										} else if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+											$rumus = "(x-a) / (b-a)";
+											$hasil = @(($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']));
+										} else {
+											$rumus = "0";
+											$hasil = 0;
+										}
+									} else {
+										if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+											$rumus = "(x-a) / (b-a)";
+											$hasil = ($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']);
+										} else if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+											$rumus = "(c-x) / (c-b)";
+											$hasil = @(($nilai_c - $suhu) / ($nilai_c - $nilai_tengah_akhir));
+										} else {
+											$rumus = "0";
+											$hasil = 0;
+										}
+									}
+								}
+								$nomor3++;
+								$nomor++;
+							}
+							?>
+						</table>
+
+						<br /><br /><br />
+						<table class="table table-bordered" style="width:900px">
+							<tr>
+								<td>Fuzzy Set</td>
+							</tr>
+
+							<?php
+							$nomor = 1;
+							$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='2' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
+							while ($row = mysql_fetch_array($sql)) {
+								if ($row['is_sub_golongan'] == 1) {
+									$nama_golongan = "Trapezoid";
+									$nilai_b = "D";
+								} else {
+									$nama_golongan = "Triangle";
+									$nilai_b = "B";
+								}
+								if ($row['keterangan_nilai'] == "Very Low") {
+									$status_a = "(B)";
+									$status_c = "(C)";
+									$status_d = "(D)";
+								} else {
+									$status_a = "(A)";
+									$status_c = "(C)";
+									$status_d = "(B)";
+								}
+
+
+
+								echo "
+									<tr>
+									<td colspan='5' style='background-color:silver'>" . $row['keterangan_nilai'] . "</td>
+									
+									</tr>
+									<tr>
+									<td>Curve Representation</td>
+									<td> $nama_golongan</td>
+									</tr>
+									<tr>
+										<td>$status_a=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['hm'], $row['keterangan_nilai'], 2, "a") . "</td>
+										<td>$status_d=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['hm'], $row['keterangan_nilai'], 2, "b") . "</td>
+															
+									<td>$status_c=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['hm'], $row['keterangan_nilai'], 2, "c") . "</td>
+										<td>(Formula)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['hm'], $row['keterangan_nilai'], 2, "r") . "</td>
+										<td>(Result)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['hm'], $row['keterangan_nilai'], 2, "h") . "</td>
+										
+									</tr>
+									";
+								if (nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['hm'], $row['keterangan_nilai'], 2, "h") == "") { } else {
+									mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','2','" . $_POST['hm'] . "','" . $row['keterangan_nilai'] . "','" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['hm'], $row['keterangan_nilai'], 2, "h") . "','$nomor3')");
+								}
+							}
+							?>
+						</table>
 					</div>
+					<!-- Humidity -->
 				</div>
 				<div class="tab-pane fade" id="pills-security" role="tabpanel" aria-labelledby="pills-security-tab" tabindex="0">
+					<!-- Intensity -->
 					<div class="row">
-						<div class="col-lg-8">
-							<div class="card">
-								<div class="card-body p-4">
-									<h4 class="fw-semibold mb-3">Two-factor Authentication</h4>
-									<div class="d-flex align-items-center justify-content-between pb-7">
-										<p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente
-											sunt earum officiis laboriosam ut.</p>
-										<button class="btn btn-primary">Enable</button>
-									</div>
-									<div class="d-flex align-items-center justify-content-between py-3 border-top">
-										<div>
-											<h5 class="fs-4 fw-semibold mb-0">Authentication App</h5>
-											<p class="mb-0">Google auth app</p>
-										</div>
-										<button class="btn bg-primary-subtle text-primary">Setup</button>
-									</div>
-									<div class="d-flex align-items-center justify-content-between py-3 border-top">
-										<div>
-											<h5 class="fs-4 fw-semibold mb-0">Another e-mail</h5>
-											<p class="mb-0">E-mail to send verification link</p>
-										</div>
-										<button class="btn bg-primary-subtle text-primary">Setup</button>
-									</div>
-									<div class="d-flex align-items-center justify-content-between py-3 border-top">
-										<div>
-											<h5 class="fs-4 fw-semibold mb-0">SMS Recovery</h5>
-											<p class="mb-0">Your phone number or something</p>
-										</div>
-										<button class="btn bg-primary-subtle text-primary">Setup</button>
-									</div>
-								</div>
+						</h2><br />
+						<div class="col-md-12">
+							<table class="table table-bordered" style="width:300px">
+								<tr>
+									<td>INTENSITY</td>
+									<td><?php echo $_POST['li']; ?>
+								</tr>
+							</table>
+							<div style="height:30px;width:800px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:30px; position:absolute ">
+								<!-- <table>
+								<tr> -->
+								<?php
+
+
+								if (!empty($vc4)) {
+									echo '<span style="margin-left: 100px;">Dark</span>';
+								}
+								if (!empty($c4)) {
+									echo '<span style="margin-left: 210px;">Rather Dim</span>';
+								}
+								if (!empty($n4)) {
+									echo '<span style="margin-left: 200px;">Normal</span>';
+								}
+								if (!empty($h4)) {
+									echo '<span style="margin-left: 150px;">Bright</span>';
+								}
+								if (!empty($vh4)) {
+									echo '<span style="margin-left: 250px;">Very Bright</span>';
+								}
+								?>
+
+								<!-- </tr>
+								</table> -->
 							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="card">
-								<div class="card-body p-4">
-									<div class="text-bg-light rounded-1 p-6 d-inline-flex align-items-center justify-content-center mb-3">
-										<i class="ti ti-device-laptop text-primary d-block fs-7" width="22" height="22"></i>
-									</div>
-									<h5 class="fs-5 fw-semibold mb-0">Devices</h5>
-									<p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit Rem.</p>
-									<button class="btn btn-primary mb-4">Sign out from all devices</button>
-									<div class="d-flex align-items-center justify-content-between py-3 border-bottom">
-										<div class="d-flex align-items-center gap-3">
-											<i class="ti ti-device-mobile text-dark d-block fs-7" width="26" height="26"></i>
-											<div>
-												<h5 class="fs-4 fw-semibold mb-0">iPhone 14</h5>
-												<p class="mb-0">London UK, Oct 23 at 1:15 AM</p>
-											</div>
-										</div>
-										<a class="text-dark fs-6 d-flex align-items-center justify-content-center bg-transparent p-2 fs-4 rounded-circle" href="javascript:void(0)">
-											<i class="ti ti-dots-vertical"></i>
-										</a>
-									</div>
-									<div class="d-flex align-items-center justify-content-between py-3">
-										<div class="d-flex align-items-center gap-3">
-											<i class="ti ti-device-laptop text-dark d-block fs-7" width="26" height="26"></i>
-											<div>
-												<h5 class="fs-4 fw-semibold mb-0">Macbook Air</h5>
-												<p class="mb-0">Gujarat India, Oct 24 at 3:15 AM</p>
-											</div>
-										</div>
-										<a class="text-dark fs-6 d-flex align-items-center justify-content-center bg-transparent p-2 fs-4 rounded-circle" href="javascript:void(0)">
-											<i class="ti ti-dots-vertical"></i>
-										</a>
-									</div>
-									<button class="btn bg-primary-subtle text-primary w-100 py-1">Need Help ?</button>
-								</div>
+
+							<div style="margin-left:17px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:69px; position: absolute">
+								<span style='color:black'>Y</span>
+
 							</div>
-						</div>
-						<div class="col-12">
-							<div class="d-flex align-items-center justify-content-end gap-3">
-								<button class="btn btn-primary">Save</button>
-								<button class="btn bg-danger-subtle text-danger">Cancel</button>
+							<div style="margin-left:500px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:355px; position: absolute">
+								<span style='color:black'>Intensity (Lux)</span>
+
 							</div>
+							<div style="margin-left:730px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:390px; position: absolute">
+
+							</div>
+							<div style="margin-left:1px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:387px; position: absolute">
+
+							</div>
+							<div id="chartContainer5" style="height: 370px;width:800px;"></div>
+							<br /> <br />
 						</div>
+
+						<table class='table table-bordered'>
+
+							<?php
+							$nomor = 1;
+							$nomor4 = 7;
+							$suhu = $_POST['li'];
+							$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='3' and nilai='" . $_POST['li'] . "' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
+							while ($row = mysql_fetch_array($sql)) {
+								$sql2 = mysql_query("SELECT MIN( nilai ) AS nilai_bawah, MAX( nilai ) AS nilai_atas
+											FROM  `tb_rule` 
+											WHERE is_golongan =  '3'
+											AND keterangan =  '" . $row['keterangan'] . "'
+											AND is_sub_golongan='" . $row['is_sub_golongan'] . "'
+											");
+								while ($row2 = mysql_fetch_array($sql2)) {
+									$nilai_a = $row2['nilai_bawah'];
+									$nilai_c = $row2['nilai_atas'];
+
+									$nilai_tengah_awal = $nilai_c - $nilai_a;
+									$nilai_tengah_pros = $nilai_tengah_awal / 2;
+									$nilai_tengah_akhir = $row2['nilai_bawah'] + $nilai_tengah_pros;
+									if ($row['is_sub_golongan'] == 1) {
+										if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+
+											$rumus = "(d-x) / (d-c)";
+											$hasil = ($row2['nilai_atas'] - $suhu) / ($row2['nilai_atas'] - $nilai_tengah_akhir);
+										} else if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+											$rumus = "(x-a) / (b-a)";
+											$hasil = @(($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']));
+										} else {
+											$rumus = "0";
+											$hasil = 0;
+										}
+									} else {
+										if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+											$rumus = "(x-a) / (b-a)";
+											$hasil = ($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']);
+										} else if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+											$rumus = "(c-x) / (c-b)";
+											$hasil = @(($nilai_c - $suhu) / ($nilai_c - $nilai_tengah_akhir));
+										} else {
+											$rumus = "0";
+											$hasil = 0;
+										}
+									}
+								}
+								$nomor++;
+								$nomor4++;
+							}
+							?>
+						</table>
+
+						<br /><br /><br />
+						<table class="table table-bordered" style="width:900px">
+							<tr>
+								<td>Fuzzy Set</td>
+							</tr>
+
+							<?php
+							$nomor = 1;
+							$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='3' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
+							while ($row = mysql_fetch_array($sql)) {
+								if ($row['is_sub_golongan'] == 1) {
+									$nama_golongan = "Trapezoid";
+									$nilai_b = "D";
+								} else {
+									$nama_golongan = "Triangle";
+									$nilai_b = "B";
+								}
+								if ($row['keterangan_nilai'] == "gelap") {
+									$ket = "Dark";
+								} else if ($row['keterangan_nilai'] == "redup") {
+									$ket = "Rather Dim";
+								} else if ($row['keterangan_nilai'] == "agak_terang") {
+									$ket = "Bright";
+								} else if ($row['keterangan_nilai'] == "terang") {
+									$ket = "Very Bright";
+								} else {
+									$ket = $row['keterangan_nilai'];
+								}
+								if ($ket == "Dark") {
+									$status_a = "(B)";
+									$status_c = "(C)";
+									$status_d = "(D)";
+								} else {
+									$status_a = "(A)";
+									$status_c = "(C)";
+									$status_d = "(B)";
+								}
+
+
+								echo "
+									<tr>
+									<td colspan='5' style='background-color:silver'>" . $ket . "</td>
+									
+									</tr>
+									<tr>
+									<td>Curve Representation</td>
+									<td> $nama_golongan</td>
+									</tr>
+									<tr>
+										<td>$status_a=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['li'], $row['keterangan_nilai'], 3, "a") . "</td>
+										<td>$status_d=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['li'], $row['keterangan_nilai'], 3, "b") . "</td>
+										
+										<td>$status_c=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['li'], $row['keterangan_nilai'], 3, "c") . "</td>
+										<td>(Formula)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['li'], $row['keterangan_nilai'], 3, "r") . "</td>
+										<td>(Result)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['li'], $row['keterangan_nilai'], 3, "h") . "</td>
+										
+									</tr>
+									";
+								if (nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['li'], $row['keterangan_nilai'], 3, "h") == "") { } else {
+									//mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','2','".$_POST['hm']."','".$row['keterangan_nilai']."','".nilai_parameter_a($row['is_sub_golongan'],$row['keterangan'],$_POST['hm'],$row['keterangan_nilai'],2,"h")."','$nomor3')");
+
+									mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','3','" . $_POST['li'] . "','" . $row['keterangan_nilai'] . "','" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['li'], $row['keterangan_nilai'], 3, "h") . "','$nomor4')");
+								}
+							}
+							?>
+						</table>
 					</div>
+					<!-- Intensity -->
+				</div>
+				<div class="tab-pane fade" id="pills-result" role="tabpanel" aria-labelledby="pills-result-tab" tabindex="0">
+					<!-- Result -->
+					<div class="row">
+						<h1>ini result</h1>
+					</div>
+					<!-- Result -->
 				</div>
 			</div>
 		</div>
@@ -1522,24 +1725,6 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 		$("#chartContainer3").CanvasJSChart(options3);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		//Better to construct options first and then pass it as a parameter
 		var options5 = {
 			title: {
@@ -1813,9 +1998,6 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 			]
 		};
 		$("#chartContainer5").CanvasJSChart(options5);
-
-
-
 	}
 </script>
 <script src="js/jquery.canvasjs.min.js"></script>
