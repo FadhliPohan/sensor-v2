@@ -1180,7 +1180,7 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 						$hasil_meni = $hasil_detik;
 						//		$hasil_meni=$hasil_detik;
 						//	echo"<tr><td>".round($hasil_meni)." Detik</td></tr>";
-						mysql_query("INSERT INTO tb_hasil_menit(tanggal,suhu,sm,humidity,li,defuz,nilai)VALUES('" . $_POST['tanggal'] . "','" . $_POST['suhu'] . "','" . $_POST['sm'] . "','" . $_POST['hm'] . "','" . $_POST['li'] . "','$gol','" . $hasil_meni . "')");
+						mysql_query("INSERT INTO tb_hasil_menit(suhu,sm,humidity,li,defuz,nilai)VALUES('" . $_POST['suhu'] . "','" . $_POST['sm'] . "','" . $_POST['hm'] . "','" . $_POST['li'] . "','$gol','" . $hasil_meni . "')");
 						?>
 					</div>
 					<!-- Result -->
