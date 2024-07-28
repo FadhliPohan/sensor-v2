@@ -284,11 +284,11 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 							$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='0' and nilai='" . $_POST['suhu'] . "' GROUP BY is_sub_golongan,keterangan_nilai");
 							while ($row = mysql_fetch_array($sql)) {
 								$sql2 = mysql_query("SELECT MIN( nilai ) AS nilai_bawah, MAX( nilai ) AS nilai_atas
-						FROM  `tb_rule` 
-						WHERE is_golongan =  '0'
-						AND keterangan =  '" . $row['keterangan'] . "'
-						AND is_sub_golongan='" . $row['is_sub_golongan'] . "'
-						");
+													FROM  `tb_rule` 
+													WHERE is_golongan =  '0'
+													AND keterangan =  '" . $row['keterangan'] . "'
+													AND is_sub_golongan='" . $row['is_sub_golongan'] . "'
+													");
 
 								while ($row2 = mysql_fetch_array($sql2)) {
 									$nilai_a = number_format($row2['nilai_bawah'], 2);
@@ -1703,13 +1703,6 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 
 		};
 		$("#chartContainer").CanvasJSChart(options2);
-
-
-
-
-
-
-
 
 
 		var options3 = {

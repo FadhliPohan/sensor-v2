@@ -24,8 +24,9 @@ include "templete/sidebar.php";
 										$sql = mysql_query("select * from node_1");
 										while ($row = mysql_fetch_array($sql)) {
 											echo "
-												<option value='" . $row['id'] . "'>" . $row['time'] . "</option>
-											";
+												<option value='" . $row['time'] . "'>" . $row['time'] . "</option>
+												";
+												// <option value='" . $row['id'] . "'>" . $row['time'] . "</option>
 										}
 										?>
 									</select>
