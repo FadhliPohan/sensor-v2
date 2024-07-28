@@ -4,13 +4,181 @@ include "templete/head.php";
 include "templete/sidebar.php";
 ?>
 
+<?php
+// include "sidebar.php";
+function get_ket($suhu, $nilai)
+{
+	$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='$suhu' and nilai='" . $nilai . "' GROUP BY is_sub_golongan,keterangan_nilai");
+	$set = "SELECT * FROM `tb_rule` WHERE is_golongan='$suhu' and nilai='" . $nilai . "' GROUP BY is_sub_golongan,keterangan_nilai";
+	while ($row = mysql_fetch_array($sql)) {
+		$data = $row['keterangan_nilai'];
+	}
+	return $set;
+}
+function nilai_parameter_a($is_sub_golongan, $keterangan, $suhu, $keterangan_nilai, $golongan, $ket_nilai)
+{
+	$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='$golongan' and nilai='" . $suhu . "' and keterangan_nilai='" . $keterangan_nilai . "' GROUP BY is_sub_golongan,keterangan_nilai");
+	while ($row = mysql_fetch_array($sql)) {
+		$sql2 = mysql_query("SELECT MIN( nilai ) AS nilai_bawah, MAX( nilai ) AS nilai_atas
+											FROM  `tb_rule` 
+											WHERE is_golongan =  '$golongan'
+											AND keterangan =  '" . $keterangan . "'
+											AND is_sub_golongan='" . $is_sub_golongan . "'
+											");
+
+
+
+
+
+		while ($row2 = mysql_fetch_array($sql2)) {
+			$nilai_a = $row2['nilai_bawah'];
+			$nilai_c = $row2['nilai_atas'];
+
+			$nilai_tengah_awal = $nilai_c - $nilai_a;
+			$nilai_tengah_pros = $nilai_tengah_awal / 2;
+			$nilai_tengah_akhir = $row2['nilai_bawah'] + $nilai_tengah_pros;
+			if ($row['is_sub_golongan'] == 1) {
+
+				if ($keterangan_nilai == "Very Cold" || $keterangan_nilai == "Very Dry" || $keterangan_nilai == "Very Low" || $keterangan_nilai == "gelap") {
+
+					if ($suhu <= $nilai_a  || $suhu >= $nilai_c) {
+						$Formula = "";
+						$hasil = 0;
+					} else if ($nilai_a <= $suhu && $suhu <= $nilai_tengah_akhir) {
+						$Formula = "b ≤ x ≤ c";
+						$hasil = 1;
+					} else if ($nilai_tengah_akhir < $suhu && $suhu < $nilai_c) {
+						$Formula = "(d-x) / (d-c)";
+						$hasil = ($row2['nilai_atas'] - $suhu) / ($row2['nilai_atas'] - $nilai_tengah_akhir);
+					}
+					if ($suhu >= $nilai_c) {
+						$Formula = "-";
+						$hasil = 0;
+					}
+				} else {
+					if ($suhu <= $nilai_a) {
+						$Formula = "-";
+						$hasil = 0;
+					} else if ($nilai_a < $suhu && $suhu < $nilai_tengah_akhir) {
+						$Formula = "(x-a) / (b-a)";
+						$hasil = ($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']);
+					} else if ($nilai_a <= $suhu && $suhu <= $nilai_c) {
+						$Formula = "b ≤ x ≤ c";
+						$hasil = 1;
+					}
+				}
+			} else {
+				if ($suhu <= $nilai_a || $suhu >= $nilai_c) {
+					$Formula = "x≤a / x≥ c";
+					$hasil = 0;
+				} else if ($nilai_a <= $suhu && $suhu <= $nilai_tengah_akhir) {
+					$Formula = "(x-a) / (b-a)";
+					$hasil = ($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']);
+				} else if ($nilai_tengah_akhir <= $suhu && $suhu <= $nilai_c) {
+					$Formula = " (c-x) / (c-b)";
+					$hasil = @(($nilai_c - $suhu) / ($nilai_c - $nilai_tengah_akhir));
+				} else if ($suhu == $nilai_tengah_akhir) {
+					$Formula = "";
+					$hasil = 1;
+				} else {
+					$Formula = "asdasdasd-";
+					$hasil = 1;
+				}
+			}
+		}
+
+		if ($keterangan_nilai == "Very Cold" || $keterangan_nilai == "Very Dry" || $keterangan_nilai == "Very Low" || $keterangan_nilai == "gelap") {
+			if ($row['is_sub_golongan'] == 1) {
+				if ($ket_nilai == "a") {
+					return $nilai_a;
+				} else if ($ket_nilai == "b") {
+					return $nilai_c;
+				} else if ($ket_nilai == "c") {
+
+					return number_format($nilai_tengah_akhir, 2);
+				} else if ($ket_nilai == "r") {
+					return $Formula;
+				} else if ($ket_nilai == "h") {
+					return number_format($hasil, 2);
+				}
+			} else {
+				if ($ket_nilai == "a") {
+					return $nilai_a;
+				} else if ($ket_nilai == "b") {
+					return number_format($nilai_tengah_akhir, 2);
+				} else if ($ket_nilai == "c") {
+					return number_format($nilai_c, 2);
+				} else if ($ket_nilai == "r") {
+					return $Formula;
+				} else if ($ket_nilai == "h") {
+					return number_format($hasil, 2);
+				}
+			}
+		} else {
+			if ($row['is_sub_golongan'] == 1) {
+				if ($ket_nilai == "a") {
+					return $nilai_a;
+				} else if ($ket_nilai == "b") {
+					return number_format($nilai_tengah_akhir, 2);
+				} else if ($ket_nilai == "c") {
+					return $nilai_c;
+				} else if ($ket_nilai == "r") {
+					return $Formula;
+				} else if ($ket_nilai == "h") {
+					return number_format($hasil, 2);
+				}
+			} else {
+				if ($ket_nilai == "a") {
+					return $nilai_a;
+				} else if ($ket_nilai == "b") {
+					return number_format($nilai_tengah_akhir, 2);
+				} else if ($ket_nilai == "c") {
+					return number_format($nilai_c, 2);
+				} else if ($ket_nilai == "r") {
+					return $Formula;
+				} else if ($ket_nilai == "h") {
+					return number_format($hasil, 2);
+				}
+			}
+		}
+	}
+}
+
+$vc2 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very Dry'"));
+$c2 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Dry'"));
+$n2 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Normal' and golongan='1'"));
+$h2 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Wet'"));
+$vh2 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very Wet'"));
+
+
+$vc3 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very Low'"));
+$c3 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Low'"));
+$n3 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Normal' and golongan='2'"));
+$h3 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='High'"));
+$vh3 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very High'"));
+
+$vc4 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='gelap'"));
+$c4 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='redup'"));
+$n4 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Normal' and golongan='3'"));
+$vh4 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='terang'"));
+$h4 = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='agak_terang'"));
+
+
+$vc = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very Cold'"));
+$c = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Cold'"));
+$n = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Normal' and golongan='0'"));
+$h = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Hot'"));
+$vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very Hot'"));
+
+?>
+
 <div class="container-fluid">
 	<div class="card">
 		<ul class="nav nav-pills user-profile-tab" id="pills-tab" role="tablist">
 			<li class="nav-item" role="presentation">
 				<button class="nav-link position-relative rounded-0 active d-flex align-items-center justify-content-center bg-transparent fs-3 py-4" id="pills-account-tab" data-bs-toggle="pill" data-bs-target="#pills-account" type="button" role="tab" aria-controls="pills-account" aria-selected="true">
 					<i class="ti ti-user-circle me-2 fs-6"></i>
-					<span class="d-none d-md-block">Account</span>
+					<span class="d-none d-md-block">Temperature</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
@@ -35,111 +203,197 @@ include "templete/sidebar.php";
 		<div class="card-body">
 			<div class="tab-content" id="pills-tabContent">
 				<div class="tab-pane fade show active" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab" tabindex="0">
+					<!-- Temperature -->
 					<div class="row">
-						<div class="col-lg-6 d-flex align-items-stretch">
-							<div class="card w-100 position-relative overflow-hidden">
-								<div class="card-body p-4">
-									<h5 class="card-title fw-semibold">Change Profile</h5>
-									<p class="card-subtitle mb-4">Change your profile picture from here</p>
-									<div class="text-center">
-										<img src="../assets/images/profile/user-1.jpg" alt="" class="img-fluid rounded-circle" width="120" height="120">
-										<div class="d-flex align-items-center justify-content-center my-4 gap-3">
-											<button class="btn btn-primary">Upload</button>
-											<button class="btn btn-outline-danger">Reset</button>
-										</div>
-										<p class="mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
-									</div>
-								</div>
+
+						<div class="col-md-12">
+
+							<table class="table table-bordered" style="width:300px">
+								<tr>
+									<td>TEMPERATURE</td>
+									<td><?php echo $_POST['suhu']; ?></td>
+
+								</tr>
+
+							</table>
+
+							<div style="height:50px;width:800px;background-color:white;z-index: 99;margin-top:30px; position: absolute">
+								<!-- <table>
+											<tr> -->
+								<?php
+
+
+								if (!empty($vc)) {
+									echo '<span style="margin-left: 200px;">Very Cold</span>';
+								}
+								if (!empty($c)) {
+									echo '<span style="margin-left: 330px;">Cold</span>';
+								}
+								if (!empty($n)) {
+									echo '<span style="margin-left: 352px;">Normal</span>';
+								}
+								if (!empty($h)) {
+									echo '<span style="margin-left: 400px;">Hot</span>';
+								}
+								if (!empty($vh)) {
+									echo '<span style="margin-left: 250px;">Very Hot</span>';
+								}
+								?>
+
+								<!-- </tr>
+												</table> -->
 							</div>
-						</div>
-						<div class="col-lg-6 d-flex align-items-stretch">
-							<div class="card w-100 position-relative overflow-hidden">
-								<div class="card-body p-4">
-									<h5 class="card-title fw-semibold">Change Password</h5>
-									<p class="card-subtitle mb-4">To change your password please confirm here</p>
-									<form>
-										<div class="mb-4">
-											<label for="exampleInputPassword1" class="form-label fw-semibold">Current Password</label>
-											<input type="password" class="form-control" id="exampleInputPassword1" value="12345678910">
-										</div>
-										<div class="mb-4">
-											<label for="exampleInputPassword2" class="form-label fw-semibold">New Password</label>
-											<input type="password" class="form-control" id="exampleInputPassword2" value="12345678910">
-										</div>
-										<div class="">
-											<label for="exampleInputPassword3" class="form-label fw-semibold">Confirm Password</label>
-											<input type="password" class="form-control" id="exampleInputPassword3" value="12345678910">
-										</div>
-									</form>
-								</div>
+							<div style="margin-left:17px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:69px; position: absolute">
+								<span style='color:black'>Y</span>
+
 							</div>
-						</div>
-						<div class="col-12">
-							<div class="card w-100 position-relative overflow-hidden mb-0">
-								<div class="card-body p-4">
-									<h5 class="card-title fw-semibold">Personal Details</h5>
-									<p class="card-subtitle mb-4">To change your personal detail , edit and save from here</p>
-									<form>
-										<div class="row">
-											<div class="col-lg-6">
-												<div class="mb-4">
-													<label for="exampleInputtext" class="form-label fw-semibold">Your Name</label>
-													<input type="text" class="form-control" id="exampleInputtext" placeholder="Mathew Anderson">
-												</div>
-												<div class="mb-4">
-													<label class="form-label fw-semibold">Location</label>
-													<select class="form-select" aria-label="Default select example">
-														<option selected>United Kingdom</option>
-														<option value="1">United States</option>
-														<option value="2">United Kingdom</option>
-														<option value="3">India</option>
-														<option value="3">Russia</option>
-													</select>
-												</div>
-												<div class="mb-4">
-													<label for="exampleInputtext1" class="form-label fw-semibold">Email</label>
-													<input type="email" class="form-control" id="exampleInputtext1" placeholder="info@modernize.com">
-												</div>
-											</div>
-											<div class="col-lg-6">
-												<div class="mb-4">
-													<label for="exampleInputtext2" class="form-label fw-semibold">Store Name</label>
-													<input type="text" class="form-control" id="exampleInputtext2" placeholder="Maxima Studio">
-												</div>
-												<div class="mb-4">
-													<label class="form-label fw-semibold">Currency</label>
-													<select class="form-select" aria-label="Default select example">
-														<option selected>India (INR)</option>
-														<option value="1">US Dollar ($)</option>
-														<option value="2">United Kingdom (Pound)</option>
-														<option value="3">India (INR)</option>
-														<option value="3">Russia (Ruble)</option>
-													</select>
-												</div>
-												<div class="mb-4">
-													<label for="exampleInputtext3" class="form-label fw-semibold">Phone</label>
-													<input type="text" class="form-control" id="exampleInputtext3" placeholder="+91 12345 65478">
-												</div>
-											</div>
-											<div class="col-12">
-												<div class="">
-													<label for="exampleInputtext4" class="form-label fw-semibold">Address</label>
-													<input type="text" class="form-control" id="exampleInputtext4" placeholder="814 Howard Street, 120065, India">
-												</div>
-											</div>
-											<div class="col-12">
-												<div class="d-flex align-items-center justify-content-end mt-4 gap-3">
-													<button class="btn btn-primary">Save</button>
-													<button class="btn bg-danger-subtle text-danger">Cancel</button>
-												</div>
-											</div>
-										</div>
-									</form>
-								</div>
+							<div style="margin-left:800px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:325px; position: absolute">
+								<span style='color:black'>Temperature (Celcius)</span>
+
 							</div>
+							<div style="margin-left:730px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:390px; position: absolute">
+
+							</div>
+							<div style="margin-left:1px;height:15px;width:150px;background-color:white;z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;margin-top:387px; position: absolute">
+
+							</div>
+							<div id="chartContainer" style="height: 370px;width:800px;"></div>
+
+							<br /><br />
 						</div>
+
+						<table class='table table-bordered'>
+						</table>
+						<br /><br /><br />
+						<table class="table table-bordered" style="width:900px">
+							<tr>
+								<td>Fuzzy Set</td>
+							</tr>
+							<?php
+							mysql_query("delete from tb_hasil");
+							mysql_query("delete from tb_hasil_2");
+							$suhu = $_POST['suhu'];
+							$nomor = 1;
+							$nomor1 = 1;
+							$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='0' and nilai='" . $_POST['suhu'] . "' GROUP BY is_sub_golongan,keterangan_nilai");
+							while ($row = mysql_fetch_array($sql)) {
+								$sql2 = mysql_query("SELECT MIN( nilai ) AS nilai_bawah, MAX( nilai ) AS nilai_atas
+						FROM  `tb_rule` 
+						WHERE is_golongan =  '0'
+						AND keterangan =  '" . $row['keterangan'] . "'
+						AND is_sub_golongan='" . $row['is_sub_golongan'] . "'
+						");
+
+								while ($row2 = mysql_fetch_array($sql2)) {
+									$nilai_a = number_format($row2['nilai_bawah'], 2);
+									$nilai_c = number_format($row2['nilai_atas'], 2);
+
+									$nilai_tengah_awal = $nilai_c - $nilai_a;
+									$nilai_tengah_pros = $nilai_tengah_awal / 2;
+									$nilai_tengah_akhir = number_format($row2['nilai_bawah'] + $nilai_tengah_pros, 2);
+									if ($row['is_sub_golongan'] == 1) {
+										if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+
+											$Formula = "(d-x) / (d-c)";
+											$hasil = ($row2['nilai_atas'] - $suhu) / ($row2['nilai_atas'] - $nilai_tengah_akhir);
+										} else if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+											$Formula = "(x-a) / (b-a)";
+											$hasil = @(($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']));
+										} else {
+											$Formula = "0";
+											$hasil = 0;
+										}
+									} else {
+										if ($row2['nilai_bawah'] <= $suhu && $suhu <= $nilai_tengah_akhir) {
+											$Formula = "(x-a) / (b-a)";
+											$hasil = ($suhu - $row2['nilai_bawah']) / ($nilai_tengah_akhir - $row2['nilai_bawah']);
+										} else if ($nilai_tengah_akhir <= $suhu && $suhu <= $row2['nilai_atas']) {
+											$Formula = "(c-x) / (c-b)";
+											$hasil = @(($nilai_c - $suhu) / ($nilai_c - $nilai_tengah_akhir));
+										} else {
+											$Formula = "0";
+											$hasil = 0;
+										}
+									}
+								}
+
+								$nomor1++;
+
+								$nomor++;
+							}
+							?>
+						</table>
+
+						<table class="table table-bordered" style="width:900px">
+
+							<?php
+							$nomor = 1;
+							$sql = mysql_query("SELECT * FROM `tb_rule` WHERE is_golongan='0' GROUP BY is_sub_golongan,keterangan_nilai ORDER BY id_golongan ASC");
+							while ($row = mysql_fetch_array($sql)) {
+								if ($row['is_sub_golongan'] == 1) {
+									$nama_golongan = "Trapezoid"; //menentukan dia masuk ke kurva mana
+									$nilai_b = "D";
+								} else {
+									$nama_golongan = "Triangle";
+									$nilai_b = "B";
+								}
+
+
+								echo "
+									<tr>
+									<td colspan='5' style='background-color:silver'>" . $row['keterangan_nilai'] . "</td>
+
+									</tr>
+									<tr>
+									<td>Curve Representation</td>
+									<td> $nama_golongan</td>
+									</tr>
+									";
+								if ($row['keterangan_nilai'] == "Very Cold") {
+									$status_a = "(B)";
+									$status_c = "(C)";
+									$status_d = "(D)";
+									echo "
+									<tr>
+									<td>$status_a=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "a") . "</td>
+									<td>$status_c=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "c") . "</td>
+
+									<td>$status_d=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "b") . "</td>
+
+									<td>(Formula)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "r") . "</td>
+									<td>(Result)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "h") . "</td>
+
+									</tr>
+									";
+								} else {
+									$status_a = "(A)";
+									$status_c = "(C)";
+									$status_d = "(B)";
+									echo "
+									<tr>
+									<td>$status_a=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "a") . "</td>
+									<td>$status_d=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "b") . "</td>
+
+									<td>$status_c=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "c") . "</td>
+									<td>(Formula)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "r") . "</td>
+									<td>(Result)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "h") . "</td>
+
+									</tr>
+										";
+								}
+
+								if (nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "h") == "") { } else {
+									mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','0','" . $_POST['suhu'] . "','" . $row['keterangan_nilai'] . "','" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "h") . "','$nomor1')");
+								}
+								echo "
+									";
+							}
+							?>
+						</table>
 					</div>
 				</div>
+				<!-- Temperature -->
+
 				<div class="tab-pane fade" id="pills-notifications" role="tabpanel" aria-labelledby="pills-notifications-tab" tabindex="0">
 					<div class="row justify-content-center">
 						<div class="col-lg-9">
@@ -471,6 +725,1100 @@ include "templete/sidebar.php";
 		</div>
 	</div>
 </div>
+
+<script>
+	window.onload = function() {
+
+		//Better to construct options first and then pass it as a parameter
+		var options = {
+			title: {
+				text: "Soil Moisture"
+
+			},
+			animationEnabled: true,
+			exportEnabled: true,
+			data: [
+				<?php
+				$data_very_dry = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='Very Dry'");
+				$row_very_dry = mysql_fetch_array($data_very_dry);
+
+				if ($row_very_dry['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Very Dry'"));
+					?> {
+
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+
+						//grafik trapesium
+						<?php if ($get['nilai'] <= 20) { ?> {
+							x: <?php echo $get['nilai'] ?>,
+							y: 1
+						},
+						{
+							x: 0,
+							y: 1
+						},
+						{
+							x: 20,
+							y: 1
+						},
+						{
+							x: 40,
+							y: 0
+						},
+						<?php } else { ?>
+
+						{
+							x: 0,
+							y: 1
+						},
+						{
+							x: 20,
+							y: 1
+						},
+						{
+							x: 40,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						<?php } ?>
+
+					]
+				},
+				<?php
+				} else { }
+				?>
+				<?php
+				$data_dry = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='Dry'");
+				$row_dry = mysql_fetch_array($data_dry);
+
+				if ($row_dry['TOTAL'] > 0) {
+					//manggil data hasil perhitungan dalam array, 
+					$getdry = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Dry'"));
+					?> {
+					//nilai bawah
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+
+						//Grafik segitiga I
+						<?php if ($getdry['nilai'] <= 42.5) { ?> {
+							x: <?php echo $getdry['nilai'] ?>,
+							y: <?php echo $getdry['hasil'] ?>
+						},
+						{
+							x: 20,
+							y: 0
+						},
+						{
+							x: 42.5,
+							y: 1
+						},
+						{
+							x: 65,
+							y: 0
+						},
+						//echo data x = input, y = hasil
+						<?php } else { ?>
+
+						{
+							x: 20,
+							y: 0
+						},
+						{
+							x: 42.5,
+							y: 1
+						},
+						{
+							x: 65,
+							y: 0
+						},
+						{
+							x: <?php echo $getdry['nilai'] ?>,
+							y: <?php echo $getdry['hasil'] ?>
+						},
+						//echo data x = input, y = hasil
+
+						<?php } ?>
+
+					]
+				},
+				<?php
+				} else { }
+				?>
+				<?php
+				$data_normal = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='Normal' and golongan='1'");
+				$row_normal = mysql_fetch_array($data_normal);
+
+				if ($row_normal['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Normal' and golongan='1'"));
+					?> {
+
+
+
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+
+						//Grafik segitiga II
+						<?php if ($get['nilai'] <= 70) { ?> {
+							x: 60,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						{
+							x: 70,
+							y: 1
+						},
+						{
+							x: 80,
+							y: 0
+						},
+						<?php } else { ?> {
+							x: 60,
+							y: 0
+						},
+						{
+							x: 70,
+							y: 1
+						},
+						{
+							x: 80,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						<?php } ?>
+
+					]
+				},
+				<?php
+				} else { }
+				?>
+				<?php
+				$data_wet = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='Wet'");
+				$row_wet = mysql_fetch_array($data_wet);
+
+				if ($row_wet['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Wet'"));
+					?> {
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+
+						//Grafik segitiga III
+						<?php if ($get['nilai'] <= 82.5) { ?> {
+							x: 75,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						{
+							x: 82.5,
+							y: 1
+						},
+						{
+							x: 90,
+							y: 0
+						},
+						<?php } else { ?> {
+							x: 75,
+							y: 0
+						},
+						{
+							x: 82.5,
+							y: 1
+						},
+						{
+							x: 90,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						<?php } ?>
+
+					]
+				},
+				<?php
+				} else { }
+				?>
+				<?php
+				$data_very_wet = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='Very Wet'");
+				$row_very_wet = mysql_fetch_array($data_very_wet);
+
+				if ($row_very_wet['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Very Wet'"));
+					?> {
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+						//Trapesium 2
+						<?php if ($get['nilai'] <= 93.75) { ?> {
+							x: 87.5,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						{
+							x: 93.75,
+							y: 1
+						},
+						{
+							x: 100,
+							y: 1
+						},
+
+						<?php } else { ?> {
+							x: 87.5,
+							y: 0
+						},
+						{
+							x: 93.75,
+							y: 1
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: 1
+						},
+						{
+							x: 100,
+							y: 1
+						},
+
+						<?php } ?>
+
+					]
+				}
+				<?php
+				} else { }
+				?>
+			]
+		};
+		$("#chartContainer2").CanvasJSChart(options);
+
+
+		//Better to construct options first and then pass it as a parameter
+		var options2 = {
+			title: {
+				text: "Temperature"
+			},
+			animationEnabled: true,
+			exportEnabled: true,
+			data: [
+				<?php
+				$data_very_cold = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='Very Cold'");
+				$row_very_cold = mysql_fetch_array($data_very_cold);
+
+				if ($row_very_cold['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Very Cold'"));
+					?> {
+
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+
+
+
+
+
+						//grafik trapesium
+						<?php if ($get['nilai'] <= 15.625) { ?> {
+							x: <?php echo $get['nilai'] ?>,
+							y: 1
+						},
+						{
+							x: 0,
+							y: 1
+						},
+						{
+							x: 15.625,
+							y: 1
+						},
+						{
+							x: 25,
+							y: 0
+						},
+
+
+						<?php } else { ?>
+
+						{
+							x: 0,
+							y: 1
+						},
+						{
+							x: 15.625,
+							y: 1
+						},
+						{
+							x: 25,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						<?php } ?>
+
+					]
+				},
+				<?php
+				} else { }
+				?>
+				<?php
+				$data_cold = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='Cold'");
+				$row_cold = mysql_fetch_array($data_cold);
+
+				if ($row_cold['TOTAL'] > 0) {
+					//manggil data hasil perhitungan dalam array, 
+					$getcold = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Cold'"));
+
+					?>
+
+				{
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+						//Segitiga 2
+						<?php if ($get['nilai'] <= 25) { ?> {
+							x: 20,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						{
+							x: 25,
+							y: 1
+						},
+						{
+							x: 30,
+							y: 0
+						},
+						<?php } else { ?> {
+							x: 20,
+							y: 0
+						},
+						{
+							x: 25,
+							y: 1
+						},
+						{
+							x: 30,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						<?php } ?>
+					]
+				},
+				<?php
+				} else { }
+
+				?>
+				<?php
+				$data_hot = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='Hot'");
+				$row_hot = mysql_fetch_array($data_hot);
+
+				if ($row_hot['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Hot'"));
+					?> {
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+						//segitiga 3
+						<?php if ($get['nilai'] <= 36.25) { ?> {
+							x: 27.5,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						{
+							x: 36.25,
+							y: 1
+						},
+						{
+							x: 45,
+							y: 0
+						},
+						<?php } else { ?> {
+							x: 27.5,
+							y: 0
+						},
+						{
+							x: 36.25,
+							y: 1
+						},
+						{
+							x: 45,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						<?php } ?>
+
+					]
+				},
+				<?php
+				} else { }
+				?>
+				<?php
+				$data_hot = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='Very Hot'");
+				$row_hot = mysql_fetch_array($data_hot);
+
+				if ($row_hot['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Very Hot'"));
+
+
+					?> {
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+						//Trapesium 2
+						<?php if ($get['nilai'] <= 45) { ?> {
+							x: 40,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						{
+							x: 45,
+							y: 1
+						},
+						{
+							x: 50,
+							y: 1
+						}
+
+						<?php } else { ?>
+
+						{
+							x: 40,
+							y: 0
+						},
+						{
+							x: 45,
+							y: 1
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: 1
+						},
+						{
+							x: 50,
+							y: 1
+						},
+
+
+
+						<?php } ?>
+					]
+				}
+
+				<?php
+
+				} else { }
+				?>
+			],
+
+		};
+		$("#chartContainer").CanvasJSChart(options2);
+
+
+
+
+
+
+
+
+
+		var options3 = {
+			title: {
+				text: "Humidity"
+			},
+			animationEnabled: true,
+			exportEnabled: true,
+			data: [
+				<?php
+				$data_very_low = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='Very Low'");
+				$row_very_low = mysql_fetch_array($data_very_low);
+
+				if ($row_very_low['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Very Low'"));
+					?> {
+
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+
+						//grafik trapesium
+						<?php if ($get['nilai'] <= 17.5) { ?> {
+							x: <?php echo $get['nilai'] ?>,
+							y: 1
+						},
+						{
+							x: 0,
+							y: 1
+						},
+						{
+							x: 17.5,
+							y: 1
+						},
+						{
+							x: 35,
+							y: 0
+						},
+						<?php } else { ?>
+
+						{
+							x: 0,
+							y: 1
+						},
+						{
+							x: 17.5,
+							y: 1
+						},
+						{
+							x: 35,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						<?php } ?>
+
+					]
+				},
+				<?php
+				} else { }
+				?>
+				<?php
+				$data_low = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='Low'");
+				$row_low = mysql_fetch_array($data_low);
+
+				if ($row_low['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Low'"));
+					?> {
+					//nilai bawah
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+
+						//Grafik segitiga I
+						<?php if ($get['nilai'] <= 36.25) { ?> {
+							x: 17.5,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						{
+							x: 36.25,
+							y: 1
+						},
+						{
+							x: 55,
+							y: 0
+						},
+						<?php } else { ?>
+
+						{
+							x: 17.5,
+							y: 0
+						},
+						{
+							x: 36.25,
+							y: 1
+						},
+						{
+							x: 55,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						<?php } ?>
+
+
+					]
+				},
+				<?php
+				} else { }
+				?>
+				<?php
+				$data_low_normal = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='Normal' and golongan='2'");
+				$row_low_normal = mysql_fetch_array($data_low_normal);
+
+				if ($row_low_normal['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Normal' and golongan='2'"));	?> {
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+						//Segitiga 2
+						<?php if ($get['nilai'] <= 60) { ?> {
+							x: 50,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						{
+							x: 60,
+							y: 1
+						},
+						{
+							x: 70,
+							y: 0
+						},
+						<?php } else { ?>
+
+						{
+							x: 50,
+							y: 0
+						},
+						{
+							x: 60,
+							y: 1
+						},
+						{
+							x: 70,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						<?php } ?>
+
+					]
+				},
+				<?php
+
+				} else { }
+				?>
+				<?php
+				$data_high = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='High'");
+				$row_high = mysql_fetch_array($data_high);
+
+				if ($row_high['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='High'"));
+					?> {
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+						//segitiga 3
+						<?php if ($get['nilai'] <= 75) { ?> {
+							x: 65,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						{
+							x: 75,
+							y: 1
+						},
+						{
+							x: 85,
+							y: 0
+						},
+						<?php } else { ?>
+
+						{
+							x: 65,
+							y: 0
+						},
+						{
+							x: 75,
+							y: 1
+						},
+						{
+							x: 85,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						<?php } ?>
+
+
+					]
+				},
+				<?php
+				} else { }
+				?>
+				<?php
+				$data_very_high = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='Very High'");
+				$row_very_high = mysql_fetch_array($data_very_high);
+
+				if ($row_very_high['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Very High'"));
+					?> {
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+						//Trapesium 2
+						<?php if ($get['nilai'] <= 90) { ?> {
+							x: 80,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+
+						{
+							x: 90,
+							y: 1
+						},
+						{
+							x: 100,
+							y: 1
+						},
+						<?php } else { ?>
+
+						{
+							x: 80,
+							y: 0
+						},
+						{
+							x: 90,
+							y: 1
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: 1
+						},
+
+						{
+							x: 100,
+							y: 1
+						},
+
+						<?php } ?>
+					]
+				}
+				<?php
+				} else { }
+				?>
+			]
+		};
+		$("#chartContainer3").CanvasJSChart(options3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		//Better to construct options first and then pass it as a parameter
+		var options5 = {
+			title: {
+				text: "INTENSITY"
+			},
+			animationEnabled: true,
+			exportEnabled: true,
+			data: [
+				<?php
+				$data_gelap = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='gelap'");
+				$row_gelap = mysql_fetch_array($data_gelap);
+				if ($row_gelap['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Gelap'"));
+					?> {
+
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+
+						//grafik trapesium
+						<?php if ($get['nilai'] <= 1000) { ?> {
+							x: <?php echo $get['nilai'] ?>,
+							y: 1
+						},
+						{
+							x: 0,
+							y: 1
+						},
+						{
+							x: 1000,
+							y: 1
+						},
+						{
+							x: 2000,
+							y: 0
+						},
+						<?php } else { ?>
+
+						{
+							x: 0,
+							y: 1
+						},
+						{
+							x: 1000,
+							y: 1
+						},
+						{
+							x: 2000,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						<?php } ?>
+
+					]
+				},
+				<?php
+				} else { }
+				?>
+				<?php
+				$data_redup = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='redup'");
+				$row_redup = mysql_fetch_array($data_redup);
+				if ($row_redup['TOTAL'] > 0) {
+					//manggil data hasil perhitungan dalam array, 
+					$getredup = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Redup'"));
+					?> {
+					//nilai bawah
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+
+						//Grafik segitiga I
+						<?php if ($getredup['nilai'] <= 3000) { ?> {
+							x: <?php echo $getredup['nilai'] ?>,
+							y: <?php echo $getredup['hasil'] ?>
+						},
+						{
+							x: 1000,
+							y: 0
+						},
+						{
+							x: 3000,
+							y: 1
+						},
+						{
+							x: 5000,
+							y: 0
+						},
+						<?php } else { ?>
+
+						{
+							x: 1000,
+							y: 0
+						},
+						{
+							x: 3000,
+							y: 1
+						},
+						{
+							x: 5000,
+							y: 0
+						},
+						{
+							x: <?php echo $getredup['nilai'] ?>,
+							y: <?php echo $getredup['hasil'] ?>
+						},
+						//echo data x = input, y = hasil
+
+
+						<?php } ?>
+
+					]
+				},
+				<?php
+				} else { }
+				?>
+				<?php
+				$data_normal_lig = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='Normal' and golongan='3'");
+				$row_normal_lig = mysql_fetch_array($data_normal_lig);
+				if ($row_normal_lig['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='Normal' and golongan='3'"));
+
+					?> {
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+						//Segitiga 2
+						<?php if ($get['nilai'] <= 6500) { ?> {
+							x: 3000,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						{
+							x: 6500,
+							y: 1
+						},
+						{
+							x: 10000,
+							y: 0
+						},
+						<?php } else { ?>
+
+						{
+							x: 3000,
+							y: 0
+						},
+						{
+							x: 6500,
+							y: 1
+						},
+						{
+							x: 10000,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						//echo data x = input, y = hasil
+						<?php } ?>
+					]
+				},
+				<?php
+				} else { }
+				?>
+				<?php
+				$data_agak_terang = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='agak_terang'");
+				$row_agak_terang = mysql_fetch_array($data_agak_terang);
+				if ($row_agak_terang['TOTAL'] > 0) {
+					$getagak_terang = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='agak_terang'"));
+					?> {
+
+
+
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+						//Segitiga 3
+						<?php if ($getagak_terang['nilai'] <= 19500) { ?> {
+							x: 9000,
+							y: 0
+						},
+						{
+							x: <?php echo $getagak_terang['nilai'] ?>,
+							y: <?php echo $getagak_terang['hasil'] ?>
+						},
+						{
+							x: 19500,
+							y: 1
+						},
+						{
+							x: 30000,
+							y: 0
+						},
+						<?php } else { ?>
+
+						{
+							x: 9000,
+							y: 0
+						},
+						{
+							x: 19500,
+							y: 1
+						},
+						{
+							x: 30000,
+							y: 0
+						},
+						{
+							x: <?php echo $getagak_terang['nilai'] ?>,
+							y: <?php echo $getagak_terang['hasil'] ?>
+						},
+						<?php } ?>
+					]
+				},
+				<?php
+				} else { }
+
+				?>
+				<?php
+				$data_terang = mysql_query("select COUNT(*)AS TOTAL from tb_hasil where keterangan='terang'");
+				$row_terang = mysql_fetch_array($data_terang);
+				if ($row_terang['TOTAL'] > 0) {
+					$get = mysql_fetch_array(mysql_query("select * from tb_hasil where keterangan='terang'"));
+					?> {
+
+					type: "line", //change it to line, area, column, pie, etc
+					dataPoints: [
+						//Trapesium 2
+						<?php if ($get['nilai'] <= 25000) { ?> {
+							x: 25000,
+							y: 0
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						{
+							x: 42500,
+							y: 1
+						},
+						{
+							x: 60000,
+							y: 1
+						}
+						<?php } else { ?>
+
+						{
+							x: 25000,
+							y: 0
+						},
+						{
+							x: 42500,
+							y: 1
+						},
+						{
+							x: 60000,
+							y: 1
+						},
+						{
+							x: <?php echo $get['nilai'] ?>,
+							y: <?php echo $get['hasil'] ?>
+						},
+						<?php } ?>
+					]
+				}
+				<?php
+				} else { }
+				?>
+			]
+		};
+		$("#chartContainer5").CanvasJSChart(options5);
+
+
+
+	}
+</script>
+<script src="js/jquery.canvasjs.min.js"></script>
 
 <?php
 include "templete/footer.php";

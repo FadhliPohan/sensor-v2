@@ -210,38 +210,9 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 								</ul>
 
 								<div class="tab-content">
+									<!-- PERHITUNGAN UNTUK INSEIDE TEMPERATURE -------------------------------------------------------------------------------------------->
 									<div id="menu1" class="tab-pane fade in active"><br /><br />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-										<!-- PERHITUNGAN UNTUK INSEIDE TEMPERATURE -------------------------------------------------------------------------------------------->
 										<div class="col-md-12">
 
 											<table class="table table-bordered" style="width:300px">
@@ -255,7 +226,7 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 
 											<div style="height:50px;width:800px;background-color:white;z-index: 99;margin-top:30px; position: absolute">
 												<!-- <table>
-							<tr> -->
+											<tr> -->
 												<?php
 
 
@@ -277,7 +248,7 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 												?>
 
 												<!-- </tr>
-							</table> -->
+											</table> -->
 											</div>
 											<div style="margin-left:17px;height:5px;width:10px;background-color:white;z-index: 999999999999999999999999999999999999999999999999999999999999;margin-top:69px; position: absolute">
 												<span style='color:black'>Y</span>
@@ -360,10 +331,6 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 											?>
 										</table>
 
-
-
-
-
 										<table class="table table-bordered" style="width:900px">
 
 											<?php
@@ -380,58 +347,56 @@ $vh = mysql_num_rows(mysql_query("select * from tb_hasil where keterangan='Very 
 
 
 												echo "
-							<tr>
-							<td colspan='5' style='background-color:silver'>" . $row['keterangan_nilai'] . "</td>
-							
-							</tr>
-							<tr>
-							<td>Curve Representation</td>
-							<td> $nama_golongan</td>
-							</tr>
-							";
+											<tr>
+											<td colspan='5' style='background-color:silver'>" . $row['keterangan_nilai'] . "</td>
+											
+											</tr>
+											<tr>
+											<td>Curve Representation</td>
+											<td> $nama_golongan</td>
+											</tr>
+											";
 												if ($row['keterangan_nilai'] == "Very Cold") {
 													$status_a = "(B)";
 													$status_c = "(C)";
 													$status_d = "(D)";
 													echo "
-							<tr>
-							<td>$status_a=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "a") . "</td>
-							<td>$status_c=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "c") . "</td>
-							
-							<td>$status_d=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "b") . "</td>
-							
-							<td>(Formula)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "r") . "</td>
-							<td>(Result)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "h") . "</td>
-							
-							</tr>
-							";
+											<tr>
+											<td>$status_a=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "a") . "</td>
+											<td>$status_c=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "c") . "</td>
+											
+											<td>$status_d=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "b") . "</td>
+											
+											<td>(Formula)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "r") . "</td>
+											<td>(Result)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "h") . "</td>
+											
+											</tr>
+											";
 												} else {
 													$status_a = "(A)";
 													$status_c = "(C)";
 													$status_d = "(B)";
 													echo "
-							<tr>
-							<td>$status_a=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "a") . "</td>
-							<td>$status_d=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "b") . "</td>
-							
-							<td>$status_c=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "c") . "</td>
-							<td>(Formula)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "r") . "</td>
-							<td>(Result)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "h") . "</td>
-							
-							</tr>
-								";
+											<tr>
+											<td>$status_a=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "a") . "</td>
+											<td>$status_d=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "b") . "</td>
+											
+											<td>$status_c=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "c") . "</td>
+											<td>(Formula)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "r") . "</td>
+											<td>(Result)=" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "h") . "</td>
+											
+											</tr>
+												";
 												}
 
 												if (nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "h") == "") { } else {
 													mysql_query("INSERT INTO tb_hasil(urutan,golongan,nilai,keterangan,hasil,nomor)VALUES('$nomor','0','" . $_POST['suhu'] . "','" . $row['keterangan_nilai'] . "','" . nilai_parameter_a($row['is_sub_golongan'], $row['keterangan'], $_POST['suhu'], $row['keterangan_nilai'], 0, "h") . "','$nomor1')");
 												}
 												echo "
-							";
+											";
 											}
 											?>
 										</table>
-
-
 
 									</div>
 
