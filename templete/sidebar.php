@@ -41,14 +41,14 @@
                             <span class="hide-menu">Monitoring</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
+                    <!-- <li class="sidebar-item">
                         <a class="sidebar-link" href="perhitungan.php" aria-expanded="false">
                             <span>
                                 <i class="ti ti-ruler-measure"></i>
                             </span>
                             <span class="hide-menu">Rule Based Combination</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="perhitungan_segitiga.php" aria-expanded="false">
                             <span>
